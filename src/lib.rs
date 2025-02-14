@@ -1,4 +1,4 @@
-mod vulkan;
+pub mod vulkan;
 
 #[derive(thiserror::Error, Debug)]
 pub enum Error {

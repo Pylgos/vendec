@@ -3,7 +3,7 @@ use ash::vk;
 
 use crate::{Error, Result};
 
-use super::{read_into_uninitialized_vector, Instance};
+use super::{read_into_vector, Instance};
 use std::{
     ffi::{c_char, CStr},
     fmt::{self, Debug},
@@ -11,6 +11,7 @@ use std::{
 };
 
 #[derive(Debug)]
+#[non_exhaustive]
 pub struct SupportedDeviceExtensions {
     pub video_queue: bool,
     pub video_encode_queue: bool,
@@ -48,16 +49,16 @@ impl SupportedDeviceExtensions {
 }
 
 pub struct PhysicalDevice {
-    pub handle: ash::vk::PhysicalDevice,
-    pub instance: Arc<Instance>,
-    pub properties: ash::vk::PhysicalDeviceProperties,
-    pub queue_family_properties: Vec<ash::vk::QueueFamilyProperties>,
-    pub supported_extensions: SupportedDeviceExtensions,
-    pub memory_properties: ash::vk::PhysicalDeviceMemoryProperties,
+    pub(super) handle: ash::vk::PhysicalDevice,
+    pub(super) instance: Arc<Instance>,
+    pub(super) properties: ash::vk::PhysicalDeviceProperties,
+    pub(super) queue_family_properties: Vec<ash::vk::QueueFamilyProperties>,
+    pub(super) supported_extensions: SupportedDeviceExtensions,
+    pub(super) memory_properties: ash::vk::PhysicalDeviceMemoryProperties,
 }
 
 impl PhysicalDevice {
-    pub fn new(instance: Arc<Instance>, handle: ash::vk::PhysicalDevice) -> Arc<Self> {
+    pub fn from_raw(instance: Arc<Instance>, handle: ash::vk::PhysicalDevice) -> Arc<Self> {
         let properties = unsafe { instance.handle.get_physical_device_properties(handle) };
         let queue_family_properties = unsafe {
             instance
@@ -149,7 +150,7 @@ impl PhysicalDevice {
             .image_usage(usage)
             .push_next(&mut video_profile_list);
         unsafe {
-            let props = read_into_uninitialized_vector(|count, data| {
+            let props = read_into_vector(|count, data| {
                 (self
                     .instance
                     .video_queue_fn

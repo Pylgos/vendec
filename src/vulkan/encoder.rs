@@ -2,22 +2,25 @@ use ash::vk;
 use log::info;
 use std::{ptr::null, sync::Arc};
 
-use super::{memory::Memory, read_into_uninitialized_vector, Device};
+use super::{memory::Memory, read_into_vector, Device, Queues};
 use crate::{Error, Result};
 
 pub struct H264Encoder {
-    device: Arc<Device>,
+    queues: Arc<Queues>,
 }
 
 impl H264Encoder {
-    pub fn new(device: Arc<Device>) -> Result<Arc<Self>> {
+    pub fn new(queues: Arc<Queues>) -> Result<Arc<Self>> {
+        let device = &queues.device;
         if device.extensions.video_queue.is_none()
             || device.extensions.video_encode_queue.is_none()
             || !device.extensions.video_encode_h264
-            || device.encode_queue.is_none()
+            || queues.compute.is_none()
+            || queues.encode.is_none()
         {
             return Err(Error::UnsupportedCodec);
         }
+        let encode_queue = queues.encode.as_ref().unwrap();
 
         let mut h264_profile = vk::VideoEncodeH264ProfileInfoKHR::default().std_profile_idc(
             ash::vk::native::StdVideoH264ProfileIdc_STD_VIDEO_H264_PROFILE_IDC_HIGH,
@@ -55,13 +58,13 @@ impl H264Encoder {
             .max_coded_extent(video_caps.max_coded_extent)
             .max_dpb_slots(2)
             .video_profile(&profile_info)
-            .queue_family_index(device.encode_queue.as_ref().unwrap().family_index)
+            .queue_family_index(encode_queue.family_index)
             .picture_format(pre_encode_format.format)
             .reference_picture_format(dpb_format.format)
             .std_header_version(&video_caps.std_header_version);
         let session = unsafe { VideoSession::new(device.clone(), &session_info)? };
 
-        Ok(Arc::new(Self { device }))
+        Ok(Arc::new(Self { queues }))
     }
 }
 
@@ -183,7 +186,7 @@ impl VideoSession {
             .result()?
         };
         let mem_requirements_list = unsafe {
-            read_into_uninitialized_vector(|count, data| {
+            read_into_vector(|count, data| {
                 (video_queue_fns.get_video_session_memory_requirements_khr)(
                     device.handle.handle(),
                     handle,
@@ -195,17 +198,8 @@ impl VideoSession {
         let mut memories = Vec::new();
         let mut binds = Vec::new();
         for mem_reqs in mem_requirements_list {
-            let mem = match device.clone().allocate_memory(
-                vk::MemoryPropertyFlags::DEVICE_LOCAL,
-                &mem_reqs.memory_requirements,
-            ) {
-                Ok(mem) => mem,
-                Err(Error::NoMatchingMemoryType) => device.clone().allocate_memory(
-                    vk::MemoryPropertyFlags::empty(),
-                    &mem_reqs.memory_requirements,
-                )?,
-                Err(err) => return Err(err),
-            };
+            let mem =
+                Memory::new_prefer_device_local(device.clone(), &mem_reqs.memory_requirements)?;
             memories.push(mem.clone());
             let bind_info = vk::BindVideoSessionMemoryInfoKHR::default()
                 .memory(mem.handle)

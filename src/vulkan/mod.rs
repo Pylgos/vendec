@@ -4,17 +4,25 @@ use std::ptr;
 
 use ash::vk;
 
+mod buffer;
+mod command_buffer;
 mod device;
 mod encoder;
+mod image;
 mod instance;
 mod memory;
 mod physical_device;
+mod queue;
 
-use device::*;
-use encoder::*;
-use instance::*;
-use memory::*;
-use physical_device::*;
+pub use buffer::*;
+pub use command_buffer::*;
+pub use device::*;
+pub use encoder::*;
+pub use image::*;
+pub use instance::*;
+pub use memory::*;
+pub use physical_device::*;
+pub use queue::*;
 
 use crate::Error;
 
@@ -30,7 +38,7 @@ impl From<ash::LoadingError> for Error {
     }
 }
 
-unsafe fn read_into_uninitialized_vector<T: Default + Clone>(
+unsafe fn read_into_vector<T: Default + Clone>(
     f: impl Fn(&mut u32, *mut T) -> vk::Result,
 ) -> ash::prelude::VkResult<Vec<T>> {
     loop {
@@ -50,27 +58,10 @@ unsafe fn read_into_uninitialized_vector<T: Default + Clone>(
     }
 }
 
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn test() {
-        let _ = env_logger::builder()
-            .is_test(true)
-            .filter_level(log::LevelFilter::Debug)
-            .try_init();
-        let instance = Instance::new().unwrap();
-        let physical_devices = instance.enumerate_physical_devices().unwrap();
-        for device in &physical_devices {
-            log::debug!("{:#?}", device);
-        }
-        let physical_device = physical_devices[0].clone();
-        let device = Device::new(physical_device).unwrap();
-        log::debug!("{:#?}", device);
-        let encoder = H264Encoder::new(device).unwrap();
-    }
-}
+// #[cfg(test)]
+// mod test {
+//     use super::*;
+// }
 // pub struct Encoder {}
 
 // impl Encoder {
