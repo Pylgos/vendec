@@ -58,6 +58,10 @@ impl Instance {
             Ok(wrapped)
         }
     }
+
+    pub fn handle(&self) -> &ash::Instance {
+        &self.handle
+    }
 }
 
 impl Drop for Instance {

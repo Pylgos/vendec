@@ -16,11 +16,11 @@ impl H264Encoder {
             || device.extensions.video_encode_queue.is_none()
             || !device.extensions.video_encode_h264
             || queues.compute.is_none()
-            || queues.encode.is_none()
+            || queues.h264_encode.is_none()
         {
             return Err(Error::UnsupportedCodec);
         }
-        let encode_queue = queues.encode.as_ref().unwrap();
+        let encode_queue = queues.h264_encode.as_ref().unwrap();
 
         let mut h264_profile = vk::VideoEncodeH264ProfileInfoKHR::default().std_profile_idc(
             ash::vk::native::StdVideoH264ProfileIdc_STD_VIDEO_H264_PROFILE_IDC_HIGH,
@@ -39,8 +39,8 @@ impl H264Encoder {
         let profile_infos = [profile_info];
         let profile_list = vk::VideoProfileListInfoKHR::default().profiles(&profile_infos);
 
-        let dpb_format = find_pre_encode_format(&device, &profile_list)?;
-        let pre_encode_format = find_pre_encode_format(&device, &profile_list)?;
+        let dpb_format = find_pre_encode_format(device, &profile_list)?;
+        let pre_encode_format = find_pre_encode_format(device, &profile_list)?;
 
         info!("dpb_format: {:#?}", dpb_format);
         info!("input_format: {:#?}", pre_encode_format);
@@ -143,7 +143,7 @@ fn find_dpb_format(
 ) -> Result<DpbFormat> {
     let video_props_list = device
         .physical_device
-        .get_video_format_properties(vk::ImageUsageFlags::VIDEO_ENCODE_DPB_KHR, &profile_list)?;
+        .get_video_format_properties(vk::ImageUsageFlags::VIDEO_ENCODE_DPB_KHR, profile_list)?;
     for video_props in video_props_list {
         if video_props.image_type != vk::ImageType::TYPE_2D {
             continue;

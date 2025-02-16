@@ -14,8 +14,12 @@ image = "0.25.5"
 log = "0.4.25"
 thiserror = "1"
 
+[dev-dependencies]
+rand = "0.9"
+
 [profile.dev]
 opt-level = 1
 
 [lints.clippy]
+missing_safety_doc = "allow"
 too_many_arguments = "allow"

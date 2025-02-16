@@ -26,6 +26,15 @@ pub use queue::*;
 
 use crate::Error;
 
+#[derive(Debug, Clone, Copy)]
+pub struct QueueFamilyProperties {
+    pub queue_flags: vk::QueueFlags,
+    pub queue_count: u32,
+    pub timestamp_valid_bits: u32,
+    pub min_image_transfer_granularity: vk::Extent3D,
+    pub video_codec_operations: vk::VideoCodecOperationFlagsKHR,
+}
+
 impl From<vk::Result> for Error {
     fn from(result: vk::Result) -> Self {
         Self::Other(result.into())
@@ -58,51 +67,103 @@ unsafe fn read_into_vector<T: Default + Clone>(
     }
 }
 
-// #[cfg(test)]
-// mod test {
-//     use super::*;
-// }
-// pub struct Encoder {}
+#[cfg(test)]
+mod test {
+    use super::*;
+    use log::info;
 
-// impl Encoder {
-//     pub fn new() -> Result<Self, Error> {
-//         let instance = Instance::new()?;
-//         let device_extensions = [
-//             ash::khr::synchronization2::NAME,
-//             ash::khr::video_queue::NAME,
-//             ash::khr::video_encode_queue::NAME,
-//         ];
-//         let queue_flags = [
-//             vk::QueueFlags::VIDEO_ENCODE_KHR,
-//             vk::QueueFlags::COMPUTE | vk::QueueFlags::TRANSFER,
-//         ];
-//         let physical_devices = instance.find_physical_devices(&device_extensions, &queue_flags)?;
-//         if physical_devices.is_empty() {
-//             return Err(Error::NoDeviceAvailable);
-//         }
-//         let physical_device = physical_devices[0].clone();
-//         let queue_family_index = physical_device.find_queue_family_indices([
-//             vk::QueueFlags::VIDEO_ENCODE_KHR,
-//             vk::QueueFlags::COMPUTE | vk::QueueFlags::TRANSFER,
-//         ]);
-//         let encode_queue_family_index = queue_family_index[0].unwrap();
-//         let compute_queue_family_index = queue_family_index[1].unwrap();
-//         let device = physical_device.create_device(&device_extensions, &queue_flags)?;
-//         Ok(Self {})
-//     }
-// }
+    fn draw_color_bar(width: u32, height: u32, frame: u32) -> ::image::RgbaImage {
+        let mut image = ::image::RgbaImage::new(width, height);
+        let bar_width = width / 7;
+        let colors = [
+            [192, 192, 192, 255], // White
+            [192, 192, 0, 255],   // Yellow
+            [0, 192, 192, 255],   // Cyan
+            [0, 192, 0, 255],     // Green
+            [192, 0, 192, 255],   // Magenta
+            [192, 0, 0, 255],     // Red
+            [0, 0, 192, 255],     // Blue
+        ];
 
-// #[cfg(test)]
-// mod test {
-//     use super::*;
+        for (i, color) in colors.iter().enumerate() {
+            let start_x = ((i as u32 * bar_width) + frame) % width;
+            for x in 0..bar_width {
+                for y in 0..height {
+                    let pixel_x = (start_x + x) % width;
+                    image.put_pixel(pixel_x, y, ::image::Rgba(*color));
+                }
+            }
+        }
+        image
+    }
 
-//     #[test]
-//     fn test_encoder() {
-//         env_logger::builder()
-//             .is_test(true)
-//             .filter_level(log::LevelFilter::Debug)
-//             .try_init()
-//             .unwrap();
-//         let encoder = Encoder::new().unwrap();
-//     }
-// }
+    #[test]
+    fn test() {
+        env_logger::builder()
+            .is_test(true)
+            .filter_level(log::LevelFilter::Debug)
+            .try_init()
+            .unwrap();
+        let _ = env_logger::builder()
+            .is_test(true)
+            .filter_level(log::LevelFilter::Debug)
+            .try_init();
+        let instance = Instance::new().unwrap();
+        let physical_devices = instance.enumerate_physical_devices().unwrap();
+        for physical_device in &physical_devices {
+            info!("{:#?}", physical_device);
+        }
+        let physical_device = physical_devices[0].clone();
+        let queues = Queues::new(physical_device.clone()).unwrap();
+
+        let image = Image::new(
+            queues.device.clone(),
+            1920,
+            1080,
+            vk::Format::R8G8B8A8_UNORM,
+            vk::ImageUsageFlags::STORAGE
+                | vk::ImageUsageFlags::TRANSFER_DST
+                | vk::ImageUsageFlags::TRANSFER_SRC
+                | vk::ImageUsageFlags::SAMPLED,
+        )
+        .unwrap();
+
+        // for i in 0..5 {
+        //     let img = draw_color_bar(image.width, image.height, i * 100);
+        // }
+
+        // let mut orig_image = ::image::RgbaImage::new(image.width, image.height);
+        // draw_color_bar(&mut orig_image);
+        // orig_image.save("cpu_image.png").unwrap();
+        // let mut cmd_buf = CommandBuffer::new(queues.compute.clone().unwrap()).unwrap();
+        // image
+        //     .clone()
+        //     .cmd_update(
+        //         &mut cmd_buf,
+        //         &orig_image,
+        //         vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL,
+        //         vk::PipelineStageFlags2::COMPUTE_SHADER,
+        //         vk::AccessFlags2::SHADER_READ,
+        //     )
+        //     .unwrap();
+        // let fence = unsafe { cmd_buf.submit().unwrap() };
+        // fence.wait().unwrap();
+        //
+        // let mut cmd_buf = CommandBuffer::new(queues.compute.clone().unwrap()).unwrap();
+        // let buf = image
+        //     .clone()
+        //     .cmd_download(
+        //         &mut cmd_buf,
+        //         vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL,
+        //         vk::PipelineStageFlags2::COMPUTE_SHADER,
+        //         vk::AccessFlags2::SHADER_READ,
+        //     )
+        //     .unwrap();
+        // let fence = unsafe { cmd_buf.submit().unwrap() };
+        // fence.wait().unwrap();
+        // let read = unsafe { buf.memory.read().unwrap() };
+        // let mut downloaded_image = ::image::RgbaImage::new(image.width, image.height);
+        // downloaded_image.copy_from_slice(&read[..(image.width * image.height * 4) as usize]);
+        // downloaded_image.save("downloaded_image.png").unwrap();
+    }
+}

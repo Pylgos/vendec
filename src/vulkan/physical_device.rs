@@ -1,9 +1,8 @@
-use anyhow::bail;
 use ash::vk;
 
 use crate::{Error, Result};
 
-use super::{read_into_vector, Instance};
+use super::{read_into_vector, Instance, QueueFamilyProperties};
 use std::{
     ffi::{c_char, CStr},
     fmt::{self, Debug},
@@ -52,7 +51,7 @@ pub struct PhysicalDevice {
     pub(super) handle: ash::vk::PhysicalDevice,
     pub(super) instance: Arc<Instance>,
     pub(super) properties: ash::vk::PhysicalDeviceProperties,
-    pub(super) queue_family_properties: Vec<ash::vk::QueueFamilyProperties>,
+    pub(super) queue_family_properties: Vec<QueueFamilyProperties>,
     pub(super) supported_extensions: SupportedDeviceExtensions,
     pub(super) memory_properties: ash::vk::PhysicalDeviceMemoryProperties,
 }
@@ -60,11 +59,7 @@ pub struct PhysicalDevice {
 impl PhysicalDevice {
     pub fn from_raw(instance: Arc<Instance>, handle: ash::vk::PhysicalDevice) -> Arc<Self> {
         let properties = unsafe { instance.handle.get_physical_device_properties(handle) };
-        let queue_family_properties = unsafe {
-            instance
-                .handle
-                .get_physical_device_queue_family_properties(handle)
-        };
+        let queue_family_properties = get_queue_family_properties(&instance.handle, handle);
         let extensions = unsafe {
             instance
                 .handle
@@ -92,6 +87,19 @@ impl PhysicalDevice {
             .iter()
             .enumerate()
             .find(|(_, family)| family.queue_flags.contains(queue_flags) && family.queue_count > 0)
+            .map(|(index, _)| index as u32)
+    }
+
+    pub fn find_video_queue_family_index(
+        &self,
+        video_ops: vk::VideoCodecOperationFlagsKHR,
+    ) -> Option<u32> {
+        self.queue_family_properties
+            .iter()
+            .enumerate()
+            .find(|(_, family)| {
+                family.video_codec_operations.contains(video_ops) && family.queue_count > 0
+            })
             .map(|(index, _)| index as u32)
     }
 
@@ -177,6 +185,37 @@ impl PhysicalDevice {
         }
         Ok(props)
     }
+}
+
+fn get_queue_family_properties(
+    instance: &ash::Instance,
+    physical_device: vk::PhysicalDevice,
+) -> Vec<QueueFamilyProperties> {
+    let len = unsafe { instance.get_physical_device_queue_family_properties2_len(physical_device) };
+    let mut video_props_list = vec![vk::QueueFamilyVideoPropertiesKHR::default(); len];
+    let mut props_list = vec![vk::QueueFamilyProperties2::default(); len];
+    props_list
+        .iter_mut()
+        .zip(video_props_list.iter_mut())
+        .for_each(|(props, video_props)| {
+            props.p_next = unsafe { std::mem::transmute(video_props) };
+        });
+    unsafe {
+        instance.get_physical_device_queue_family_properties2(physical_device, &mut props_list)
+    }
+    video_props_list
+        .iter()
+        .zip(props_list.iter())
+        .map(|(video_props, props)| QueueFamilyProperties {
+            queue_flags: props.queue_family_properties.queue_flags,
+            queue_count: props.queue_family_properties.queue_count,
+            timestamp_valid_bits: props.queue_family_properties.timestamp_valid_bits,
+            min_image_transfer_granularity: props
+                .queue_family_properties
+                .min_image_transfer_granularity,
+            video_codec_operations: video_props.video_codec_operations,
+        })
+        .collect()
 }
 
 impl Debug for PhysicalDevice {
