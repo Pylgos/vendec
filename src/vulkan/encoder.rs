@@ -64,6 +64,26 @@ impl H264Encoder {
             .std_header_version(&video_caps.std_header_version);
         let session = unsafe { VideoSession::new(device.clone(), &session_info)? };
 
+        let dpb_images = (0..2)
+            .map(|_| {
+                let info = vk::ImageCreateInfo::default()
+                    .format(dpb_format.format)
+                    .extent(vk::Extent3D {
+                        width: h264_encode_caps.max_reference_pictures[0].width,
+                        height: h264_encode_caps.max_reference_pictures[0].height,
+                        depth: 1,
+                    })
+                    .image_type(vk::ImageType::TYPE_2D)
+                    .usage(vk::ImageUsageFlags::VIDEO_ENCODE_DPB_KHR)
+                    .mip_levels(1)
+                    .array_layers(1)
+                    .samples(vk::SampleCountFlags::TYPE_1)
+                    .initial_layout(vk::ImageLayout::UNDEFINED);
+                let image = unsafe { Image::new(device.clone(), &info)? };
+                Ok(image)
+            })
+            .collect::<Result<Vec<_>>>()?;
+
         Ok(Arc::new(Self { queues }))
     }
 }

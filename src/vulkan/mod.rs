@@ -128,6 +128,8 @@ mod test {
         )
         .unwrap();
 
+        let mut encoder = H264Encoder::new(queues.clone()).unwrap();
+
         // for i in 0..5 {
         //     let img = draw_color_bar(image.width, image.height, i * 100);
         // }

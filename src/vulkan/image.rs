@@ -20,6 +20,7 @@ impl Image {
         height: u32,
         format: vk::Format,
         usage: vk::ImageUsageFlags,
+        profile_list: Option<&vk::VideoProfileListInfoKHR>,
     ) -> Result<Arc<Self>> {
         let info = vk::ImageCreateInfo::default()
             .format(format)
