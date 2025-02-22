@@ -1,0 +1,10 @@
+[package]
+name = "vendec-libva"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+vendec-libva-sys.workspace = true
+libloading.workspace = true
+bitflags.workspace = true
+paste.workspace = true
