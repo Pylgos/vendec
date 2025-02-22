@@ -80,7 +80,7 @@ impl Display {
         Ok(raw_profiles
             .iter()
             .take(profiles_count as usize)
-            .filter_map(|&raw| Profile::from_raw(raw))
+            .filter_map(|&raw| Profile::try_from(raw).ok())
             .collect())
     }
 
@@ -89,8 +89,8 @@ impl Display {
         profile: Option<Profile>,
         entrypoint: Entrypoint,
     ) -> VaResult<ConfigAttributes> {
-        let raw_profile = profile.map(|p| p.to_raw()).unwrap_or(sys::VAProfileNone);
-        let raw_entrypoint = entrypoint.to_raw();
+        let raw_profile = profile.map(Into::into).unwrap_or(sys::VAProfileNone);
+        let raw_entrypoint = entrypoint.into();
         let mut raw_attrib_list = ConfigAttributes::default_raw_attrib_list();
         unsafe {
             self.library

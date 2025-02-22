@@ -14,8 +14,8 @@ impl Config {
         entrypoint: Entrypoint,
         attributes: &ConfigAttributes,
     ) -> VaResult<Self> {
-        let raw_profile = profile.map(|p| p.to_raw()).unwrap_or(sys::VAProfileNone);
-        let raw_entrypoint = entrypoint.to_raw();
+        let raw_profile = profile.map(Into::into).unwrap_or(sys::VAProfileNone);
+        let raw_entrypoint = entrypoint.into();
         let mut raw_attrib_list = attributes.to_raw_attrib_list();
         let mut handle = sys::VAConfigID::default();
         unsafe {
