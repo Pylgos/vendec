@@ -7,7 +7,6 @@ use std::sync::Arc;
 use crate::sys;
 use crate::ConfigAttributes;
 use crate::Entrypoint;
-use crate::ErrorStatus;
 use crate::Library;
 use crate::Profile;
 use crate::VaResult;
@@ -72,7 +71,7 @@ impl Display {
         let mut profiles_count = unsafe { self.library.lib().vaMaxNumProfiles(self.handle) };
         let mut raw_profiles = vec![sys::VAProfileNone; profiles_count as usize];
         unsafe {
-            self.library
+            self.library()
                 .lib()
                 .vaQueryConfigProfiles(self.handle, raw_profiles.as_mut_ptr(), &mut profiles_count)
                 .va_result()?;
@@ -93,7 +92,7 @@ impl Display {
         let raw_entrypoint = entrypoint.into();
         let mut raw_attrib_list = ConfigAttributes::default_raw_attrib_list();
         unsafe {
-            self.library
+            self.library()
                 .lib()
                 .vaGetConfigAttributes(
                     self.handle(),
@@ -110,7 +109,13 @@ impl Display {
 
 impl Drop for Display {
     fn drop(&mut self) {
-        unsafe { self.library.lib().vaTerminate(self.handle) };
+        unsafe { self.library.lib().vaTerminate(self.handle()) };
+    }
+}
+
+impl std::fmt::Debug for Display {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Display({:p})", self.handle)
     }
 }
 

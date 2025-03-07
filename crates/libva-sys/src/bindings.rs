@@ -462,7 +462,7 @@ pub const VA_3DLUT_CHANNEL_VUY_RGB: u32 = 4;
 pub type VADisplay = *mut ::std::os::raw::c_void;
 pub type VAStatus = ::std::os::raw::c_int;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VARectangle {
     pub x: i16,
     pub y: i16,
@@ -481,7 +481,7 @@ const _: () = {
 };
 pub type VARectangle = _VARectangle;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAMotionVector {
     pub mv0: [i16; 2usize],
     pub mv1: [i16; 2usize],
@@ -631,6 +631,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttrib::value"]
         [::std::mem::offset_of!(_VAConfigAttrib, value) - 4usize];
 };
+impl Default for _VAConfigAttrib {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttrib = _VAConfigAttrib;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -639,7 +648,7 @@ pub union _VAConfigAttribValDecJPEG {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValDecJPEG__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -718,6 +727,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValDecJPEG::value"]
         [::std::mem::offset_of!(_VAConfigAttribValDecJPEG, value) - 0usize];
 };
+impl Default for _VAConfigAttribValDecJPEG {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValDecJPEG = _VAConfigAttribValDecJPEG;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -726,7 +744,7 @@ pub union _VAConfigAttribValMaxFrameSize {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValMaxFrameSize__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -805,6 +823,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValMaxFrameSize::value"]
         [::std::mem::offset_of!(_VAConfigAttribValMaxFrameSize, value) - 0usize];
 };
+impl Default for _VAConfigAttribValMaxFrameSize {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValMaxFrameSize = _VAConfigAttribValMaxFrameSize;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -814,7 +841,7 @@ pub union _VAConfigAttribValEncJPEG {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncJPEG__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -977,6 +1004,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncJPEG::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncJPEG, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncJPEG {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncJPEG = _VAConfigAttribValEncJPEG;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -985,7 +1021,7 @@ pub union _VAConfigAttribValEncROI {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncROI__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1082,6 +1118,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncROI::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncROI, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncROI {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncROI = _VAConfigAttribValEncROI;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1090,7 +1135,7 @@ pub union _VAConfigAttribValEncRateControlExt {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncRateControlExt__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1171,6 +1216,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncRateControlExt::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncRateControlExt, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncRateControlExt {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncRateControlExt = _VAConfigAttribValEncRateControlExt;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1179,7 +1233,7 @@ pub union _VAConfigAttribValMultipleFrame {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValMultipleFrame__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1259,6 +1313,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValMultipleFrame::value"]
         [::std::mem::offset_of!(_VAConfigAttribValMultipleFrame, value) - 0usize];
 };
+impl Default for _VAConfigAttribValMultipleFrame {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValMultipleFrame = _VAConfigAttribValMultipleFrame;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1268,7 +1331,7 @@ pub union _VAConfigAttribValContextPriority {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValContextPriority__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1328,6 +1391,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValContextPriority::value"]
         [::std::mem::offset_of!(_VAConfigAttribValContextPriority, value) - 0usize];
 };
+impl Default for _VAConfigAttribValContextPriority {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValContextPriority = _VAConfigAttribValContextPriority;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1336,7 +1408,7 @@ pub union _VAConfigAttribValEncPerBlockControl {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncPerBlockControl__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1433,6 +1505,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncPerBlockControl::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncPerBlockControl, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncPerBlockControl {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncPerBlockControl = _VAConfigAttribValEncPerBlockControl;
 pub type VAGenericID = ::std::os::raw::c_uint;
 pub type VAConfigID = VAGenericID;
@@ -1473,6 +1554,15 @@ const _: () = {
     ["Offset of field: _VAGenericValue__bindgen_ty_1::fn_"]
         [::std::mem::offset_of!(_VAGenericValue__bindgen_ty_1, fn_) - 0usize];
 };
+impl Default for _VAGenericValue__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAGenericValue"][::std::mem::size_of::<_VAGenericValue>() - 16usize];
@@ -1482,6 +1572,15 @@ const _: () = {
     ["Offset of field: _VAGenericValue::value"]
         [::std::mem::offset_of!(_VAGenericValue, value) - 8usize];
 };
+impl Default for _VAGenericValue {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAGenericValue = _VAGenericValue;
 pub const VASurfaceAttribNone: VASurfaceAttribType = 0;
 pub const VASurfaceAttribPixelFormat: VASurfaceAttribType = 1;
@@ -1514,6 +1613,15 @@ const _: () = {
     ["Offset of field: _VASurfaceAttrib::value"]
         [::std::mem::offset_of!(_VASurfaceAttrib, value) - 8usize];
 };
+impl Default for _VASurfaceAttrib {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASurfaceAttrib = _VASurfaceAttrib;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -1522,7 +1630,7 @@ pub union _VASurfaceAttribAlignmentStruct {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASurfaceAttribAlignmentStruct__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1602,6 +1710,15 @@ const _: () = {
     ["Offset of field: _VASurfaceAttribAlignmentStruct::value"]
         [::std::mem::offset_of!(_VASurfaceAttribAlignmentStruct, value) - 0usize];
 };
+impl Default for _VASurfaceAttribAlignmentStruct {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASurfaceAttribAlignmentStruct = _VASurfaceAttribAlignmentStruct;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1647,6 +1764,15 @@ const _: () = {
     ["Offset of field: _VASurfaceAttribExternalBuffers::private_data"]
         [::std::mem::offset_of!(_VASurfaceAttribExternalBuffers, private_data) - 72usize];
 };
+impl Default for _VASurfaceAttribExternalBuffers {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASurfaceAttribExternalBuffers = _VASurfaceAttribExternalBuffers;
 pub type VAMFContextID = VAGenericID;
 pub type VABufferID = VAGenericID;
@@ -1716,7 +1842,7 @@ pub union _VAContextParameterUpdateBuffer__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAContextParameterUpdateBuffer__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -1782,6 +1908,15 @@ const _: () = {
     ["Offset of field: _VAContextParameterUpdateBuffer__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAContextParameterUpdateBuffer__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAContextParameterUpdateBuffer__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAContextParameterUpdateBuffer"]
@@ -1795,6 +1930,15 @@ const _: () = {
     ["Offset of field: _VAContextParameterUpdateBuffer::reserved"]
         [::std::mem::offset_of!(_VAContextParameterUpdateBuffer, reserved) - 8usize];
 };
+impl Default for _VAContextParameterUpdateBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAContextParameterUpdateBuffer = _VAContextParameterUpdateBuffer;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1825,6 +1969,15 @@ const _: () = {
     ["Offset of field: _VAEncryptionSegmentInfo::va_reserved"]
         [::std::mem::offset_of!(_VAEncryptionSegmentInfo, va_reserved) - 80usize];
 };
+impl Default for _VAEncryptionSegmentInfo {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncryptionSegmentInfo = _VAEncryptionSegmentInfo;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1870,9 +2023,18 @@ const _: () = {
     ["Offset of field: _VAEncryptionParameters::va_reserved"]
         [::std::mem::offset_of!(_VAEncryptionParameters, va_reserved) - 164usize];
 };
+impl Default for _VAEncryptionParameters {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncryptionParameters = _VAEncryptionParameters;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcessingRateParameterEnc {
     pub level_idc: u8,
     pub reserved: [u8; 3usize],
@@ -1899,7 +2061,7 @@ const _: () = {
 };
 pub type VAProcessingRateParameterEnc = _VAProcessingRateParameterEnc;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcessingRateParameterDec {
     pub level_idc: u8,
     pub reserved0: [u8; 3usize],
@@ -1941,6 +2103,15 @@ const _: () = {
     ["Offset of field: _VAProcessingRateParameter__bindgen_ty_1::proc_buf_dec"]
         [::std::mem::offset_of!(_VAProcessingRateParameter__bindgen_ty_1, proc_buf_dec) - 0usize];
 };
+impl Default for _VAProcessingRateParameter__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAProcessingRateParameter"]
@@ -1948,6 +2119,15 @@ const _: () = {
     ["Alignment of _VAProcessingRateParameter"]
         [::std::mem::align_of::<_VAProcessingRateParameter>() - 4usize];
 };
+impl Default for _VAProcessingRateParameter {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcessingRateParameter = _VAProcessingRateParameter;
 pub const VAEncMiscParameterTypeFrameRate: VAEncMiscParameterType = 0;
 pub const VAEncMiscParameterTypeRateControl: VAEncMiscParameterType = 1;
@@ -1977,7 +2157,7 @@ pub const VAEncPackedHeaderRawData: VAEncPackedHeaderType = 4;
 pub const VAEncPackedHeaderMiscMask: VAEncPackedHeaderType = 2147483648;
 pub type VAEncPackedHeaderType = ::std::os::raw::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPackedHeaderParameterBuffer {
     pub type_: u32,
     pub bit_length: u32,
@@ -2017,9 +2197,18 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterBuffer::data"]
         [::std::mem::offset_of!(_VAEncMiscParameterBuffer, data) - 4usize];
 };
+impl Default for _VAEncMiscParameterBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterBuffer = _VAEncMiscParameterBuffer;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterTemporalLayerStructure {
     pub number_of_layers: u32,
     pub periodicity: u32,
@@ -2068,7 +2257,7 @@ pub union _VAEncMiscParameterRateControl__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterRateControl__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -2262,6 +2451,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterRateControl__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterRateControl__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterRateControl__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterRateControl"]
@@ -2293,6 +2491,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterRateControl::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterRateControl, va_reserved) - 44usize];
 };
+impl Default for _VAEncMiscParameterRateControl {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterRateControl = _VAEncMiscParameterRateControl;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -2308,7 +2515,7 @@ pub union _VAEncMiscParameterFrameRate__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterFrameRate__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -2370,6 +2577,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterFrameRate__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterFrameRate__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterFrameRate__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterFrameRate"]
@@ -2383,9 +2599,18 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterFrameRate::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterFrameRate, va_reserved) - 8usize];
 };
+impl Default for _VAEncMiscParameterFrameRate {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterFrameRate = _VAEncMiscParameterFrameRate;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterMaxSliceSize {
     pub max_slice_size: u32,
     pub va_reserved: [u32; 4usize],
@@ -2403,7 +2628,7 @@ const _: () = {
 };
 pub type VAEncMiscParameterMaxSliceSize = _VAEncMiscParameterMaxSliceSize;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterAIR {
     pub air_num_mbs: u32,
     pub air_threshold: u32,
@@ -2441,7 +2666,7 @@ pub union _VAEncMiscParameterRIR__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterRIR__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -2520,6 +2745,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterRIR__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterRIR__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterRIR__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterRIR"][::std::mem::size_of::<_VAEncMiscParameterRIR>() - 28usize];
@@ -2536,9 +2770,18 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterRIR::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterRIR, va_reserved) - 12usize];
 };
+impl Default for _VAEncMiscParameterRIR {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterRIR = _VAEncMiscParameterRIR;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterHRD {
     pub initial_buffer_fullness: u32,
     pub buffer_size: u32,
@@ -2577,6 +2820,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterBufferMaxFrameSize::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterBufferMaxFrameSize, va_reserved) - 8usize];
 };
+impl Default for _VAEncMiscParameterBufferMaxFrameSize {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterBufferMaxFrameSize = _VAEncMiscParameterBufferMaxFrameSize;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2611,9 +2863,18 @@ const _: () = {
         va_reserved
     ) - 24usize];
 };
+impl Default for _VAEncMiscParameterBufferMultiPassFrameSize {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterBufferMultiPassFrameSize = _VAEncMiscParameterBufferMultiPassFrameSize;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterBufferQualityLevel {
     pub quality_level: u32,
     pub va_reserved: [u32; 4usize],
@@ -2643,7 +2904,7 @@ pub union _VAEncMiscParameterQuantization__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterQuantization__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -2756,6 +3017,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterQuantization__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterQuantization__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterQuantization__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterQuantization"]
@@ -2767,9 +3037,18 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterQuantization::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterQuantization, va_reserved) - 4usize];
 };
+impl Default for _VAEncMiscParameterQuantization {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterQuantization = _VAEncMiscParameterQuantization;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterSkipFrame {
     pub skip_frame_flag: u8,
     pub num_skip_frames: u8,
@@ -2793,7 +3072,7 @@ const _: () = {
 };
 pub type VAEncMiscParameterSkipFrame = _VAEncMiscParameterSkipFrame;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncROI {
     pub roi_rectangle: VARectangle,
     pub roi_value: i8,
@@ -2825,7 +3104,7 @@ pub union _VAEncMiscParameterBufferROI__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterBufferROI__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -2891,6 +3170,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterBufferROI__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterBufferROI__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterBufferROI__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterBufferROI"]
@@ -2910,6 +3198,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterBufferROI::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterBufferROI, va_reserved) - 20usize];
 };
+impl Default for _VAEncMiscParameterBufferROI {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterBufferROI = _VAEncMiscParameterBufferROI;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2928,6 +3225,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterBufferDirtyRect::roi_rectangle"]
         [::std::mem::offset_of!(_VAEncMiscParameterBufferDirtyRect, roi_rectangle) - 8usize];
 };
+impl Default for _VAEncMiscParameterBufferDirtyRect {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterBufferDirtyRect = _VAEncMiscParameterBufferDirtyRect;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2946,6 +3252,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterParallelRateControl::num_b_in_gop"]
         [::std::mem::offset_of!(_VAEncMiscParameterParallelRateControl, num_b_in_gop) - 8usize];
 };
+impl Default for _VAEncMiscParameterParallelRateControl {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterParallelRateControl = _VAEncMiscParameterParallelRateControl;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -2963,7 +3278,7 @@ pub union _VAEncMiscParameterEncQuality__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterEncQuality__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -3241,6 +3556,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterEncQuality__bindgen_ty_1::encControls"]
         [::std::mem::offset_of!(_VAEncMiscParameterEncQuality__bindgen_ty_1, encControls) - 0usize];
 };
+impl Default for _VAEncMiscParameterEncQuality__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterEncQuality"]
@@ -3254,6 +3578,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterEncQuality::reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterEncQuality, reserved) - 160usize];
 };
+impl Default for _VAEncMiscParameterEncQuality {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterEncQuality = _VAEncMiscParameterEncQuality;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -3268,7 +3601,7 @@ pub union _VAEncMiscParameterCustomRoundingControl__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterCustomRoundingControl__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -3390,6 +3723,15 @@ const _: () = {
         value
     ) - 0usize];
 };
+impl Default for _VAEncMiscParameterCustomRoundingControl__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterCustomRoundingControl"]
@@ -3402,9 +3744,18 @@ const _: () = {
     )
         - 0usize];
 };
+impl Default for _VAEncMiscParameterCustomRoundingControl {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterCustomRoundingControl = _VAEncMiscParameterCustomRoundingControl;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferBase {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -3465,6 +3816,15 @@ const _: () = {
     ["Offset of field: _VAHuffmanTableBufferJPEGBaseline__bindgen_ty_1::pad"]
         [::std::mem::offset_of!(_VAHuffmanTableBufferJPEGBaseline__bindgen_ty_1, pad) - 206usize];
 };
+impl Default for _VAHuffmanTableBufferJPEGBaseline__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAHuffmanTableBufferJPEGBaseline"]
@@ -3478,6 +3838,15 @@ const _: () = {
     ["Offset of field: _VAHuffmanTableBufferJPEGBaseline::va_reserved"]
         [::std::mem::offset_of!(_VAHuffmanTableBufferJPEGBaseline, va_reserved) - 420usize];
 };
+impl Default for _VAHuffmanTableBufferJPEGBaseline {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAHuffmanTableBufferJPEGBaseline = _VAHuffmanTableBufferJPEGBaseline;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -3499,7 +3868,7 @@ pub union _VAPictureParameterBufferMPEG2__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferMPEG2__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -3710,6 +4079,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferMPEG2__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferMPEG2__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferMPEG2__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferMPEG2"]
@@ -3739,6 +4117,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferMPEG2::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferMPEG2, va_reserved) - 24usize];
 };
+impl Default for _VAPictureParameterBufferMPEG2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferMPEG2 = _VAPictureParameterBufferMPEG2;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -3784,9 +4171,18 @@ const _: () = {
     ["Offset of field: _VAIQMatrixBufferMPEG2::va_reserved"]
         [::std::mem::offset_of!(_VAIQMatrixBufferMPEG2, va_reserved) - 272usize];
 };
+impl Default for _VAIQMatrixBufferMPEG2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAIQMatrixBufferMPEG2 = _VAIQMatrixBufferMPEG2;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferMPEG2 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -3844,7 +4240,7 @@ pub union _VAMacroblockParameterBufferMPEG2__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAMacroblockParameterBufferMPEG2__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -3926,6 +4322,15 @@ const _: () = {
     ["Offset of field: _VAMacroblockParameterBufferMPEG2__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAMacroblockParameterBufferMPEG2__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAMacroblockParameterBufferMPEG2__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAMacroblockParameterBufferMPEG2"]
@@ -3954,6 +4359,15 @@ const _: () = {
     ["Offset of field: _VAMacroblockParameterBufferMPEG2::va_reserved"]
         [::std::mem::offset_of!(_VAMacroblockParameterBufferMPEG2, va_reserved) - 32usize];
 };
+impl Default for _VAMacroblockParameterBufferMPEG2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAMacroblockParameterBufferMPEG2 = _VAMacroblockParameterBufferMPEG2;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -3985,7 +4399,7 @@ pub union _VAPictureParameterBufferMPEG4__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferMPEG4__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -4197,6 +4611,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferMPEG4__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferMPEG4__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferMPEG4__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferMPEG4__bindgen_ty_2 {
@@ -4205,7 +4628,7 @@ pub union _VAPictureParameterBufferMPEG4__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferMPEG4__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -4337,6 +4760,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferMPEG4__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferMPEG4__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferMPEG4__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferMPEG4"]
@@ -4388,6 +4820,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferMPEG4::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferMPEG4, va_reserved) - 48usize];
 };
+impl Default for _VAPictureParameterBufferMPEG4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferMPEG4 = _VAPictureParameterBufferMPEG4;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -4414,9 +4855,18 @@ const _: () = {
     ["Offset of field: _VAIQMatrixBufferMPEG4::va_reserved"]
         [::std::mem::offset_of!(_VAIQMatrixBufferMPEG4, va_reserved) - 136usize];
 };
+impl Default for _VAIQMatrixBufferMPEG4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAIQMatrixBufferMPEG4 = _VAIQMatrixBufferMPEG4;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferMPEG4 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -4496,7 +4946,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -4706,6 +5156,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_2 {
@@ -4714,7 +5173,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -4812,6 +5271,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_3 {
@@ -4820,7 +5288,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_3 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_3__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -4918,6 +5386,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_3::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_3, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_3 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_4 {
@@ -4926,7 +5403,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_4 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_4__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -5041,6 +5518,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_4::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_4, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_5 {
@@ -5049,7 +5535,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_5 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_5__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -5195,6 +5681,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_5::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_5, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_5 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_6 {
@@ -5203,7 +5698,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_6 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_6__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -5349,6 +5844,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_6::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_6, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_6 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_7 {
@@ -5357,7 +5861,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_7 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_7__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -5458,6 +5962,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_7::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_7, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_7 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_8 {
@@ -5466,7 +5979,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_8 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_8__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -5662,6 +6175,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_8::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_8, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_8 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_9 {
@@ -5670,7 +6192,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_9 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_9__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -5880,6 +6402,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_9::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_9, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVC1__bindgen_ty_10 {
@@ -5888,7 +6419,7 @@ pub union _VAPictureParameterBufferVC1__bindgen_ty_10 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVC1__bindgen_ty_10__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -6024,6 +6555,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1__bindgen_ty_10::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1__bindgen_ty_10, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVC1__bindgen_ty_10 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferVC1"]
@@ -6093,9 +6633,18 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVC1::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVC1, va_reserved) - 76usize];
 };
+impl Default for _VAPictureParameterBufferVC1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferVC1 = _VAPictureParameterBufferVC1;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferVC1 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -6125,7 +6674,7 @@ const _: () = {
 };
 pub type VASliceParameterBufferVC1 = _VASliceParameterBufferVC1;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureH264 {
     pub picture_id: VASurfaceID,
     pub frame_idx: u32,
@@ -6182,7 +6731,7 @@ pub union _VAPictureParameterBufferH264__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferH264__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -6399,6 +6948,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferH264__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferH264__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferH264__bindgen_ty_2 {
@@ -6407,7 +6965,7 @@ pub union _VAPictureParameterBufferH264__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferH264__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -6607,6 +7165,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferH264__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferH264__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferH264__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferH264"]
@@ -6659,6 +7226,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferH264::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferH264, va_reserved) - 640usize];
 };
+impl Default for _VAPictureParameterBufferH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferH264 = _VAPictureParameterBufferH264;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -6679,9 +7255,18 @@ const _: () = {
     ["Offset of field: _VAIQMatrixBufferH264::va_reserved"]
         [::std::mem::offset_of!(_VAIQMatrixBufferH264, va_reserved) - 224usize];
 };
+impl Default for _VAIQMatrixBufferH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAIQMatrixBufferH264 = _VAIQMatrixBufferH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferH264 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -6813,7 +7398,7 @@ pub union _VAEncSliceParameterBuffer__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBuffer__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -6910,6 +7495,15 @@ const _: () = {
     ["Offset of field: _VAEncSliceParameterBuffer__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSliceParameterBuffer__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSliceParameterBuffer__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSliceParameterBuffer"]
@@ -6925,9 +7519,18 @@ const _: () = {
     ["Offset of field: _VAEncSliceParameterBuffer::va_reserved"]
         [::std::mem::offset_of!(_VAEncSliceParameterBuffer, va_reserved) - 12usize];
 };
+impl Default for _VAEncSliceParameterBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSliceParameterBuffer = _VAEncSliceParameterBuffer;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferH263 {
     pub intra_period: u32,
     pub bits_per_second: u32,
@@ -6988,9 +7591,18 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferH263::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferH263, va_reserved) - 20usize];
 };
+impl Default for _VAEncPictureParameterBufferH263 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferH263 = _VAEncPictureParameterBufferH263;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferMPEG4 {
     pub profile_and_level_indication: u8,
     pub intra_period: u32,
@@ -7087,6 +7699,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferMPEG4::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferMPEG4, va_reserved) - 28usize];
 };
+impl Default for _VAEncPictureParameterBufferMPEG4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferMPEG4 = _VAEncPictureParameterBufferMPEG4;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -7119,9 +7740,18 @@ const _: () = {
     ["Offset of field: _VACodedBufferSegment::va_reserved"]
         [::std::mem::offset_of!(_VACodedBufferSegment, va_reserved) - 32usize];
 };
+impl Default for _VACodedBufferSegment {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VACodedBufferSegment = _VACodedBufferSegment;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct VABufferInfo {
     pub handle: usize,
     pub type_: u32,
@@ -7181,9 +7811,18 @@ const _: () = {
     ["Offset of field: _VASurfaceDecodeMBErrors::va_reserved"]
         [::std::mem::offset_of!(_VASurfaceDecodeMBErrors, va_reserved) - 20usize];
 };
+impl Default for _VASurfaceDecodeMBErrors {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASurfaceDecodeMBErrors = _VASurfaceDecodeMBErrors;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAImageFormat {
     pub fourcc: u32,
     pub byte_order: u32,
@@ -7221,7 +7860,7 @@ const _: () = {
 pub type VAImageFormat = _VAImageFormat;
 pub type VAImageID = VAGenericID;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAImage {
     pub image_id: VAImageID,
     pub format: VAImageFormat,
@@ -7276,7 +7915,7 @@ pub union _VADisplayAttribValSubDevice {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADisplayAttribValSubDevice__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -7371,6 +8010,15 @@ const _: () = {
     ["Offset of field: _VADisplayAttribValSubDevice::value"]
         [::std::mem::offset_of!(_VADisplayAttribValSubDevice, value) - 0usize];
 };
+impl Default for _VADisplayAttribValSubDevice {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VADisplayAttribValSubDevice = _VADisplayAttribValSubDevice;
 pub const VADisplayAttribBrightness: VADisplayAttribType = 0;
 pub const VADisplayAttribContrast: VADisplayAttribType = 1;
@@ -7422,9 +8070,18 @@ const _: () = {
     ["Offset of field: _VADisplayAttribute::va_reserved"]
         [::std::mem::offset_of!(_VADisplayAttribute, va_reserved) - 20usize];
 };
+impl Default for _VADisplayAttribute {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VADisplayAttribute = _VADisplayAttribute;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureHEVC {
     pub picture_id: VASurfaceID,
     pub pic_order_cnt: i32,
@@ -7446,7 +8103,7 @@ const _: () = {
 };
 pub type VAPictureHEVC = _VAPictureHEVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureVVC {
     pub picture_id: VASurfaceID,
     pub pic_order_cnt: i32,
@@ -7494,6 +8151,15 @@ const _: () = {
     ["Offset of field: _VACopyObject__bindgen_ty_1::buffer_id"]
         [::std::mem::offset_of!(_VACopyObject__bindgen_ty_1, buffer_id) - 0usize];
 };
+impl Default for _VACopyObject__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VACopyObject"][::std::mem::size_of::<_VACopyObject>() - 40usize];
@@ -7505,6 +8171,15 @@ const _: () = {
     ["Offset of field: _VACopyObject::va_reserved"]
         [::std::mem::offset_of!(_VACopyObject, va_reserved) - 8usize];
 };
+impl Default for _VACopyObject {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VACopyObject = _VACopyObject;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -7513,7 +8188,7 @@ pub union _VACopyOption {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VACopyOption__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -7589,6 +8264,15 @@ const _: () = {
     ["Offset of field: _VACopyOption::value"]
         [::std::mem::offset_of!(_VACopyOption, value) - 0usize];
 };
+impl Default for _VACopyOption {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VACopyOption = _VACopyOption;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -7640,7 +8324,7 @@ pub union _VAPictureParameterBufferHEVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -8021,6 +8705,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferHEVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferHEVC__bindgen_ty_2 {
@@ -8028,7 +8721,7 @@ pub union _VAPictureParameterBufferHEVC__bindgen_ty_2 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferHEVC__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -8312,6 +9005,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVC__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVC__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferHEVC__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferHEVC"]
@@ -8442,6 +9144,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVC, va_reserved) - 572usize];
 };
+impl Default for _VAPictureParameterBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferHEVC = _VAPictureParameterBufferHEVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8462,7 +9173,7 @@ pub union _VAPictureParameterBufferHEVCRext__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferHEVCRext__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -8698,6 +9409,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVCRext__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVCRext__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferHEVCRext__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferHEVCRext"]
@@ -8733,6 +9453,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVCRext::cr_qp_offset_list"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVCRext, cr_qp_offset_list) - 15usize];
 };
+impl Default for _VAPictureParameterBufferHEVCRext {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferHEVCRext = _VAPictureParameterBufferHEVCRext;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8753,7 +9482,7 @@ pub union _VAPictureParameterBufferHEVCScc__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferHEVCScc__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -8904,6 +9633,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVCScc__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVCScc__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferHEVCScc__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferHEVCScc"]
@@ -8940,6 +9678,15 @@ const _: () = {
         pps_act_cr_qp_offset_plus3
     ) - 778usize];
 };
+impl Default for _VAPictureParameterBufferHEVCScc {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferHEVCScc = _VAPictureParameterBufferHEVCScc;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8961,6 +9708,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferHEVCExtension::scc"]
         [::std::mem::offset_of!(_VAPictureParameterBufferHEVCExtension, scc) - 628usize];
 };
+impl Default for _VAPictureParameterBufferHEVCExtension {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferHEVCExtension = _VAPictureParameterBufferHEVCExtension;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -9003,7 +9759,7 @@ pub union _VASliceParameterBufferHEVC__bindgen_ty_1 {
     pub fields: _VASliceParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -9249,6 +10005,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferHEVC__bindgen_ty_1::fields"]
         [::std::mem::offset_of!(_VASliceParameterBufferHEVC__bindgen_ty_1, fields) - 0usize];
 };
+impl Default for _VASliceParameterBufferHEVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASliceParameterBufferHEVC"]
@@ -9328,6 +10093,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VASliceParameterBufferHEVC, va_reserved) - 256usize];
 };
+impl Default for _VASliceParameterBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASliceParameterBufferHEVC = _VASliceParameterBufferHEVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -9348,7 +10122,7 @@ pub union _VASliceParameterBufferHEVCRext__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferHEVCRext__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -9430,6 +10204,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferHEVCRext__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VASliceParameterBufferHEVCRext__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VASliceParameterBufferHEVCRext__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASliceParameterBufferHEVCRext"]
@@ -9457,6 +10240,15 @@ const _: () = {
         slice_act_cr_qp_offset
     ) - 186usize];
 };
+impl Default for _VASliceParameterBufferHEVCRext {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASliceParameterBufferHEVCRext = _VASliceParameterBufferHEVCRext;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -9475,6 +10267,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferHEVCExtension::rext"]
         [::std::mem::offset_of!(_VASliceParameterBufferHEVCExtension, rext) - 264usize];
 };
+impl Default for _VASliceParameterBufferHEVCExtension {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASliceParameterBufferHEVCExtension = _VASliceParameterBufferHEVCExtension;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -9507,6 +10308,15 @@ const _: () = {
     ["Offset of field: _VAIQMatrixBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAIQMatrixBufferHEVC, va_reserved) - 1000usize];
 };
+impl Default for _VAIQMatrixBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAIQMatrixBufferHEVC = _VAIQMatrixBufferHEVC;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -9521,7 +10331,7 @@ pub struct _VAPictureParameterBufferJPEGBaseline {
     pub va_reserved: [u32; 5usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferJPEGBaseline__bindgen_ty_1 {
     pub component_id: u8,
     pub h_sampling_factor: u8,
@@ -9574,6 +10384,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferJPEGBaseline::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferJPEGBaseline, va_reserved) - 1040usize];
 };
+impl Default for _VAPictureParameterBufferJPEGBaseline {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferJPEGBaseline = _VAPictureParameterBufferJPEGBaseline;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -9595,9 +10414,18 @@ const _: () = {
     ["Offset of field: _VAIQMatrixBufferJPEGBaseline::va_reserved"]
         [::std::mem::offset_of!(_VAIQMatrixBufferJPEGBaseline, va_reserved) - 260usize];
 };
+impl Default for _VAIQMatrixBufferJPEGBaseline {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAIQMatrixBufferJPEGBaseline = _VAIQMatrixBufferJPEGBaseline;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferJPEGBaseline {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -9611,7 +10439,7 @@ pub struct _VASliceParameterBufferJPEGBaseline {
     pub va_reserved: [u32; 4usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferJPEGBaseline__bindgen_ty_1 {
     pub component_selector: u8,
     pub dc_table_selector: u8,
@@ -9673,7 +10501,7 @@ const _: () = {
 };
 pub type VASliceParameterBufferJPEGBaseline = _VASliceParameterBufferJPEGBaseline;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VABoolCoderContextVPX {
     pub range: u8,
     pub value: u8,
@@ -9724,7 +10552,7 @@ pub union _VAPictureParameterBufferVP8__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVP8__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -9970,6 +10798,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVP8__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVP8__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVP8__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferVP8"]
@@ -10019,9 +10856,18 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVP8::va_reserved"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVP8, va_reserved) - 96usize];
 };
+impl Default for _VAPictureParameterBufferVP8 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferVP8 = _VAPictureParameterBufferVP8;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferVP8 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -10054,7 +10900,7 @@ const _: () = {
 };
 pub type VASliceParameterBufferVP8 = _VASliceParameterBufferVP8;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProbabilityDataBufferVP8 {
     pub dct_coeff_probs: [[[[u8; 11usize]; 3usize]; 8usize]; 4usize],
     pub va_reserved: [u32; 4usize],
@@ -10072,7 +10918,7 @@ const _: () = {
 };
 pub type VAProbabilityDataBufferVP8 = _VAProbabilityDataBufferVP8;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAIQMatrixBufferVP8 {
     pub quantization_index: [[u16; 6usize]; 4usize],
     pub va_reserved: [u32; 4usize],
@@ -10114,7 +10960,7 @@ pub union _VADecPictureParameterBufferVP9__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferVP9__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -10507,6 +11353,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferVP9__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferVP9__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferVP9__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VADecPictureParameterBufferVP9"]
@@ -10546,6 +11401,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferVP9::va_reserved"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferVP9, va_reserved) - 60usize];
 };
+impl Default for _VADecPictureParameterBufferVP9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VADecPictureParameterBufferVP9 = _VADecPictureParameterBufferVP9;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -10566,7 +11430,7 @@ pub union _VASegmentParameterVP9__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(2))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASegmentParameterVP9__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -10648,6 +11512,15 @@ const _: () = {
     ["Offset of field: _VASegmentParameterVP9__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VASegmentParameterVP9__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VASegmentParameterVP9__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASegmentParameterVP9"][::std::mem::size_of::<_VASegmentParameterVP9>() - 36usize];
@@ -10668,6 +11541,15 @@ const _: () = {
     ["Offset of field: _VASegmentParameterVP9::va_reserved"]
         [::std::mem::offset_of!(_VASegmentParameterVP9, va_reserved) - 20usize];
 };
+impl Default for _VASegmentParameterVP9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASegmentParameterVP9 = _VASegmentParameterVP9;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -10695,6 +11577,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferVP9::va_reserved"]
         [::std::mem::offset_of!(_VASliceParameterBufferVP9, va_reserved) - 300usize];
 };
+impl Default for _VASliceParameterBufferVP9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASliceParameterBufferVP9 = _VASliceParameterBufferVP9;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -10703,7 +11594,7 @@ pub union VAConfigAttribValDecAV1Features {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct VAConfigAttribValDecAV1Features__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -10763,6 +11654,15 @@ const _: () = {
     ["Offset of field: VAConfigAttribValDecAV1Features::value"]
         [::std::mem::offset_of!(VAConfigAttribValDecAV1Features, value) - 0usize];
 };
+impl Default for VAConfigAttribValDecAV1Features {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct _VASegmentationStructAV1 {
@@ -10778,7 +11678,7 @@ pub union _VASegmentationStructAV1__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASegmentationStructAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -10889,6 +11789,15 @@ const _: () = {
     ["Offset of field: _VASegmentationStructAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VASegmentationStructAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VASegmentationStructAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASegmentationStructAV1"]
@@ -10904,6 +11813,15 @@ const _: () = {
     ["Offset of field: _VASegmentationStructAV1::va_reserved"]
         [::std::mem::offset_of!(_VASegmentationStructAV1, va_reserved) - 140usize];
 };
+impl Default for _VASegmentationStructAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASegmentationStructAV1 = _VASegmentationStructAV1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -10937,7 +11855,7 @@ pub union _VAFilmGrainStructAV1__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAFilmGrainStructAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -11116,6 +12034,15 @@ const _: () = {
     ["Offset of field: _VAFilmGrainStructAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAFilmGrainStructAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAFilmGrainStructAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAFilmGrainStructAV1"][::std::mem::size_of::<_VAFilmGrainStructAV1>() - 176usize];
@@ -11164,6 +12091,15 @@ const _: () = {
     ["Offset of field: _VAFilmGrainStructAV1::va_reserved"]
         [::std::mem::offset_of!(_VAFilmGrainStructAV1, va_reserved) - 160usize];
 };
+impl Default for _VAFilmGrainStructAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAFilmGrainStructAV1 = _VAFilmGrainStructAV1;
 pub const VAAV1TransformationIdentity: VAAV1TransformationType = 0;
 pub const VAAV1TransformationTranslation: VAAV1TransformationType = 1;
@@ -11194,6 +12130,15 @@ const _: () = {
     ["Offset of field: _VAWarpedMotionParamsAV1::va_reserved"]
         [::std::mem::offset_of!(_VAWarpedMotionParamsAV1, va_reserved) - 40usize];
 };
+impl Default for _VAWarpedMotionParamsAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAWarpedMotionParamsAV1 = _VAWarpedMotionParamsAV1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -11256,7 +12201,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -11567,6 +12512,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VADecPictureParameterBufferAV1__bindgen_ty_2 {
@@ -11575,7 +12529,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -11885,6 +12839,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VADecPictureParameterBufferAV1__bindgen_ty_3 {
@@ -11892,7 +12855,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_3 {
     pub value: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_3__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -11990,6 +12953,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_3::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_3, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_3 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VADecPictureParameterBufferAV1__bindgen_ty_4 {
@@ -11998,7 +12970,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_4 {
 }
 #[repr(C)]
 #[repr(align(2))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_4__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -12111,6 +13083,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_4::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_4, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VADecPictureParameterBufferAV1__bindgen_ty_5 {
@@ -12118,7 +13099,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_5 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_5__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -12312,6 +13293,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_5::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_5, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_5 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VADecPictureParameterBufferAV1__bindgen_ty_6 {
@@ -12320,7 +13310,7 @@ pub union _VADecPictureParameterBufferAV1__bindgen_ty_6 {
 }
 #[repr(C)]
 #[repr(align(2))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VADecPictureParameterBufferAV1__bindgen_ty_6__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -12452,6 +13442,15 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1__bindgen_ty_6::value"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1__bindgen_ty_6, value) - 0usize];
 };
+impl Default for _VADecPictureParameterBufferAV1__bindgen_ty_6 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VADecPictureParameterBufferAV1"]
@@ -12573,9 +13572,18 @@ const _: () = {
     ["Offset of field: _VADecPictureParameterBufferAV1::va_reserved"]
         [::std::mem::offset_of!(_VADecPictureParameterBufferAV1, va_reserved) - 1124usize];
 };
+impl Default for _VADecPictureParameterBufferAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VADecPictureParameterBufferAV1 = _VADecPictureParameterBufferAV1;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferAV1 {
     pub slice_data_size: u32,
     pub slice_data_offset: u32,
@@ -12617,7 +13625,7 @@ const _: () = {
 };
 pub type VASliceParameterBufferAV1 = _VASliceParameterBufferAV1;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAWeightedPredInfo {
     pub luma_log2_weight_denom: u8,
     pub delta_chroma_log2_weight_denom: i8,
@@ -12761,7 +13769,7 @@ pub union _VAPictureParameterBufferVVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(8))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 8usize]>,
@@ -13582,6 +14590,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVVC__bindgen_ty_2 {
@@ -13589,7 +14606,7 @@ pub union _VAPictureParameterBufferVVC__bindgen_ty_2 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVVC__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -13875,6 +14892,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVVC__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVVC__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVVC__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVVC__bindgen_ty_3 {
@@ -13883,7 +14909,7 @@ pub union _VAPictureParameterBufferVVC__bindgen_ty_3 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVVC__bindgen_ty_3__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -14268,6 +15294,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVVC__bindgen_ty_3::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVVC__bindgen_ty_3, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVVC__bindgen_ty_3 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAPictureParameterBufferVVC__bindgen_ty_4 {
@@ -14275,7 +15310,7 @@ pub union _VAPictureParameterBufferVVC__bindgen_ty_4 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureParameterBufferVVC__bindgen_ty_4__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -14337,6 +15372,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVVC__bindgen_ty_4::value"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVVC__bindgen_ty_4, value) - 0usize];
 };
+impl Default for _VAPictureParameterBufferVVC__bindgen_ty_4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAPictureParameterBufferVVC"]
@@ -14552,6 +15596,15 @@ const _: () = {
     ["Offset of field: _VAPictureParameterBufferVVC::reserved32b"]
         [::std::mem::offset_of!(_VAPictureParameterBufferVVC, reserved32b) - 948usize];
 };
+impl Default for _VAPictureParameterBufferVVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAPictureParameterBufferVVC = _VAPictureParameterBufferVVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -14596,7 +15649,7 @@ pub union _VASliceParameterBufferVVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceParameterBufferVVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -14912,6 +15965,15 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferVVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VASliceParameterBufferVVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VASliceParameterBufferVVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASliceParameterBufferVVC"]
@@ -14983,9 +16045,18 @@ const _: () = {
     ["Offset of field: _VASliceParameterBufferVVC::va_reserved"]
         [::std::mem::offset_of!(_VASliceParameterBufferVVC, va_reserved) - 400usize];
 };
+impl Default for _VASliceParameterBufferVVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASliceParameterBufferVVC = _VASliceParameterBufferVVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAScalingListVVC {
     pub aps_adaptation_parameter_set_id: u8,
     pub reserved8b: u8,
@@ -15042,7 +16113,7 @@ pub union _VAAlfDataVVC__bindgen_ty_1 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAAlfDataVVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -15189,6 +16260,15 @@ const _: () = {
     ["Offset of field: _VAAlfDataVVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAAlfDataVVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAAlfDataVVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAAlfDataVVC"][::std::mem::size_of::<_VAAlfDataVVC>() - 824usize];
@@ -15226,9 +16306,18 @@ const _: () = {
     ["Offset of field: _VAAlfDataVVC::va_reserved"]
         [::std::mem::offset_of!(_VAAlfDataVVC, va_reserved) - 792usize];
 };
+impl Default for _VAAlfDataVVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAAlfDataVVC = _VAAlfDataVVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VALmcsDataVVC {
     pub aps_adaptation_parameter_set_id: u8,
     pub lmcs_min_bin_idx: u8,
@@ -15276,7 +16365,7 @@ pub union _VASubPicVVC__bindgen_ty_1 {
     pub value: u16,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASubPicVVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -15357,6 +16446,15 @@ const _: () = {
     ["Offset of field: _VASubPicVVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VASubPicVVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VASubPicVVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VASubPicVVC"][::std::mem::size_of::<_VASubPicVVC>() - 28usize];
@@ -15376,9 +16474,18 @@ const _: () = {
     ["Offset of field: _VASubPicVVC::va_reserved"]
         [::std::mem::offset_of!(_VASubPicVVC, va_reserved) - 12usize];
 };
+impl Default for _VASubPicVVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VASubPicVVC = _VASubPicVVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VASliceStructVVC {
     pub SliceTopLeftTileIdx: u16,
     pub pps_slice_width_in_tiles_minus1: u16,
@@ -15410,7 +16517,7 @@ pub union VAConfigAttribValEncHEVCFeatures {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct VAConfigAttribValEncHEVCFeatures__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -15701,6 +16808,15 @@ const _: () = {
     ["Offset of field: VAConfigAttribValEncHEVCFeatures::value"]
         [::std::mem::offset_of!(VAConfigAttribValEncHEVCFeatures, value) - 0usize];
 };
+impl Default for VAConfigAttribValEncHEVCFeatures {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union VAConfigAttribValEncHEVCBlockSizes {
@@ -15709,7 +16825,7 @@ pub union VAConfigAttribValEncHEVCBlockSizes {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct VAConfigAttribValEncHEVCBlockSizes__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -15943,6 +17059,15 @@ const _: () = {
     ["Offset of field: VAConfigAttribValEncHEVCBlockSizes::value"]
         [::std::mem::offset_of!(VAConfigAttribValEncHEVCBlockSizes, value) - 0usize];
 };
+impl Default for VAConfigAttribValEncHEVCBlockSizes {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub const VAEncPackedHeaderHEVC_VPS: VAEncPackedHeaderTypeHEVC = 1;
 pub const VAEncPackedHeaderHEVC_SPS: VAEncPackedHeaderTypeHEVC = 1;
 pub const VAEncPackedHeaderHEVC_PPS: VAEncPackedHeaderTypeHEVC = 2;
@@ -15993,7 +17118,7 @@ pub union _VAEncSequenceParameterBufferHEVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -16258,6 +17383,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferHEVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferHEVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferHEVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncSequenceParameterBufferHEVC__bindgen_ty_2 {
@@ -16266,7 +17400,7 @@ pub union _VAEncSequenceParameterBufferHEVC__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferHEVC__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -16469,6 +17603,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferHEVC__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferHEVC__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferHEVC__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncSequenceParameterBufferHEVC__bindgen_ty_3 {
@@ -16476,7 +17619,7 @@ pub union _VAEncSequenceParameterBufferHEVC__bindgen_ty_3 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferHEVC__bindgen_ty_3__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -16542,6 +17685,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferHEVC__bindgen_ty_3::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferHEVC__bindgen_ty_3, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferHEVC__bindgen_ty_3 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSequenceParameterBufferHEVC"]
@@ -16639,6 +17791,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferHEVC, va_reserved) - 88usize];
 };
+impl Default for _VAEncSequenceParameterBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSequenceParameterBufferHEVC = _VAEncSequenceParameterBufferHEVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -16676,7 +17837,7 @@ pub union _VAEncPictureParameterBufferHEVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -17041,6 +18202,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferHEVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferHEVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferHEVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferHEVC__bindgen_ty_2 {
@@ -17048,7 +18218,7 @@ pub union _VAEncPictureParameterBufferHEVC__bindgen_ty_2 {
     pub value: u16,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferHEVC__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -17114,6 +18284,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferHEVC__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferHEVC__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferHEVC__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferHEVC"]
@@ -17190,6 +18369,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferHEVC, va_reserved) - 516usize];
 };
+impl Default for _VAEncPictureParameterBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferHEVC = _VAEncPictureParameterBufferHEVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -17231,7 +18419,7 @@ pub union _VAEncSliceParameterBufferHEVC__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBufferHEVC__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -17465,6 +18653,15 @@ const _: () = {
     ["Offset of field: _VAEncSliceParameterBufferHEVC__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSliceParameterBufferHEVC__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSliceParameterBufferHEVC__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSliceParameterBufferHEVC"]
@@ -17545,6 +18742,15 @@ const _: () = {
     ["Offset of field: _VAEncSliceParameterBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAEncSliceParameterBufferHEVC, va_reserved) - 1052usize];
 };
+impl Default for _VAEncSliceParameterBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSliceParameterBufferHEVC = _VAEncSliceParameterBufferHEVC;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -17576,6 +18782,15 @@ const _: () = {
     ["Offset of field: _VAQMatrixBufferHEVC::va_reserved"]
         [::std::mem::offset_of!(_VAQMatrixBufferHEVC, va_reserved) - 1000usize];
 };
+impl Default for _VAQMatrixBufferHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAQMatrixBufferHEVC = _VAQMatrixBufferHEVC;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -17584,7 +18799,7 @@ pub union _VAConfigAttribValStats {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValStats__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -17696,9 +18911,18 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValStats::value"]
         [::std::mem::offset_of!(_VAConfigAttribValStats, value) - 0usize];
 };
+impl Default for _VAConfigAttribValStats {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValStats = _VAConfigAttribValStats;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAPictureStats {
     pub picture_id: VASurfaceID,
     pub flags: u32,
@@ -17754,6 +18978,15 @@ const _: () = {
     ["Offset of field: _VAStatsStatisticsParameter::qp"]
         [::std::mem::offset_of!(_VAStatsStatisticsParameter, qp) - 68usize];
 };
+impl Default for _VAStatsStatisticsParameter {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAStatsStatisticsParameter = _VAStatsStatisticsParameter;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -17801,6 +19034,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterFEIFrameControlHEVC::reserved4"]
         [::std::mem::offset_of!(_VAEncMiscParameterFEIFrameControlHEVC, reserved4) - 64usize];
 };
+impl Default for _VAEncMiscParameterFEIFrameControlHEVC {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 impl _VAEncMiscParameterFEIFrameControlHEVC {
     #[inline]
     pub fn num_mv_predictors_l0(&self) -> u32 {
@@ -18231,7 +19473,7 @@ impl _VAEncMiscParameterFEIFrameControlHEVC {
 }
 pub type VAEncMiscParameterFEIFrameControlHEVC = _VAEncMiscParameterFEIFrameControlHEVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMVPredictorHEVC {
     pub ref_idx: [_VAEncFEIMVPredictorHEVC__bindgen_ty_1; 4usize],
     pub _bitfield_align_1: [u32; 0],
@@ -18239,7 +19481,7 @@ pub struct _VAEncFEIMVPredictorHEVC {
     pub mv: [VAMotionVector; 4usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMVPredictorHEVC__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -18338,7 +19580,7 @@ impl _VAEncFEIMVPredictorHEVC {
 }
 pub type VAEncFEIMVPredictorHEVC = _VAEncFEIMVPredictorHEVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEICTBControlHEVC {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -18448,7 +19690,7 @@ impl _VAEncFEICTBControlHEVC {
 }
 pub type VAEncFEICTBControlHEVC = _VAEncFEICTBControlHEVC;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIDistortionHevc {
     pub best_distortion: u32,
     pub colocated_ctb_distortion: u32,
@@ -18510,7 +19752,7 @@ pub union _VAEncSequenceParameterBufferH264__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferH264__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -18694,6 +19936,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferH264__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferH264__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncSequenceParameterBufferH264__bindgen_ty_2 {
@@ -18702,7 +19953,7 @@ pub union _VAEncSequenceParameterBufferH264__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferH264__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -18886,6 +20137,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferH264__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferH264__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferH264__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSequenceParameterBufferH264"]
@@ -18978,6 +20238,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferH264::va_reserved"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferH264, va_reserved) - 1116usize];
 };
+impl Default for _VAEncSequenceParameterBufferH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSequenceParameterBufferH264 = _VAEncSequenceParameterBufferH264;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -19005,7 +20274,7 @@ pub union _VAEncPictureParameterBufferH264__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferH264__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -19222,6 +20491,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferH264__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferH264__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferH264"]
@@ -19268,9 +20546,18 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferH264::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferH264, va_reserved) - 632usize];
 };
+impl Default for _VAEncPictureParameterBufferH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferH264 = _VAEncPictureParameterBufferH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncQPBufferH264 {
     pub qp: u8,
 }
@@ -19283,7 +20570,7 @@ const _: () = {
 };
 pub type VAEncQPBufferH264 = _VAEncQPBufferH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBufferH264 {
     pub macroblock_address: u32,
     pub num_macroblocks: u32,
@@ -19442,7 +20729,7 @@ pub union _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -19516,6 +20803,15 @@ const _: () = {
     )
         - 0usize];
 };
+impl Default for _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_2 {
@@ -19523,7 +20819,7 @@ pub union _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_2 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_2__bindgen_ty_1 {
     pub reserved: u32,
 }
@@ -19555,6 +20851,15 @@ const _: () = {
     )
         - 0usize];
 };
+impl Default for _VAEncMacroblockParameterBufferH264__bindgen_ty_1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMacroblockParameterBufferH264__bindgen_ty_1"]
@@ -19572,6 +20877,15 @@ const _: () = {
     )
         - 0usize];
 };
+impl Default for _VAEncMacroblockParameterBufferH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMacroblockParameterBufferH264"]
@@ -19585,6 +20899,15 @@ const _: () = {
     ["Offset of field: _VAEncMacroblockParameterBufferH264::va_reserved"]
         [::std::mem::offset_of!(_VAEncMacroblockParameterBufferH264, va_reserved) - 8usize];
 };
+impl Default for _VAEncMacroblockParameterBufferH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMacroblockParameterBufferH264 = _VAEncMacroblockParameterBufferH264;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -19603,7 +20926,7 @@ pub union _VAEncMiscParameterSubMbPartPelH264__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterSubMbPartPelH264__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -19772,6 +21095,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterSubMbPartPelH264__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncMiscParameterSubMbPartPelH264__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncMiscParameterSubMbPartPelH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncMiscParameterSubMbPartPelH264"]
@@ -19795,6 +21127,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterSubMbPartPelH264::reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterSubMbPartPelH264, reserved) - 13usize];
 };
+impl Default for _VAEncMiscParameterSubMbPartPelH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterSubMbPartPelH264 = _VAEncMiscParameterSubMbPartPelH264;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -19820,7 +21161,7 @@ pub union _VAEncPictureParameterBufferJPEG__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferJPEG__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -19934,6 +21275,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferJPEG__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferJPEG__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferJPEG__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferJPEG"]
@@ -19967,9 +21317,18 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferJPEG::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferJPEG, va_reserved) - 32usize];
 };
+impl Default for _VAEncPictureParameterBufferJPEG {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferJPEG = _VAEncPictureParameterBufferJPEG;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBufferJPEG {
     pub restart_interval: u16,
     pub num_components: u16,
@@ -19977,7 +21336,7 @@ pub struct _VAEncSliceParameterBufferJPEG {
     pub va_reserved: [u32; 4usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBufferJPEG__bindgen_ty_1 {
     pub component_selector: u8,
     pub dc_table_selector: u8,
@@ -20045,6 +21404,15 @@ const _: () = {
     ["Offset of field: _VAQMatrixBufferJPEG::va_reserved"]
         [::std::mem::offset_of!(_VAQMatrixBufferJPEG, va_reserved) - 136usize];
 };
+impl Default for _VAQMatrixBufferJPEG {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAQMatrixBufferJPEG = _VAQMatrixBufferJPEG;
 pub type VAQMatrixBufferMPEG2 = VAIQMatrixBufferMPEG2;
 pub const VAEncPackedHeaderMPEG2_SPS: VAEncPackedHeaderTypeMPEG2 = 1;
@@ -20075,7 +21443,7 @@ pub union _VAEncSequenceParameterBufferMPEG2__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferMPEG2__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -20208,6 +21576,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferMPEG2__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferMPEG2__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferMPEG2__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncSequenceParameterBufferMPEG2__bindgen_ty_2 {
@@ -20215,7 +21592,7 @@ pub union _VAEncSequenceParameterBufferMPEG2__bindgen_ty_2 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferMPEG2__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -20296,6 +21673,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferMPEG2__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferMPEG2__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferMPEG2__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSequenceParameterBufferMPEG2"]
@@ -20329,6 +21715,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferMPEG2::va_reserved"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferMPEG2, va_reserved) - 40usize];
 };
+impl Default for _VAEncSequenceParameterBufferMPEG2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSequenceParameterBufferMPEG2 = _VAEncSequenceParameterBufferMPEG2;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20354,7 +21749,7 @@ pub union _VAEncPictureParameterBufferMPEG2__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferMPEG2__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -20566,6 +21961,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferMPEG2__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferMPEG2__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferMPEG2__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferMPEG2__bindgen_ty_2 {
@@ -20574,7 +21978,7 @@ pub union _VAEncPictureParameterBufferMPEG2__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferMPEG2__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -20688,6 +22092,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferMPEG2__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferMPEG2__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferMPEG2__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferMPEG2"]
@@ -20725,9 +22138,18 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferMPEG2::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferMPEG2, va_reserved) - 44usize];
 };
+impl Default for _VAEncPictureParameterBufferMPEG2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferMPEG2 = _VAEncPictureParameterBufferMPEG2;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSliceParameterBufferMPEG2 {
     pub macroblock_address: u32,
     pub num_macroblocks: u32,
@@ -20754,7 +22176,7 @@ const _: () = {
 };
 pub type VAEncSliceParameterBufferMPEG2 = _VAEncSliceParameterBufferMPEG2;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncMiscParameterExtensionDataSeqDisplayMPEG2 {
     pub extension_start_code_identifier: u8,
     pub video_format: u8,
@@ -20806,7 +22228,7 @@ const _: () = {
 pub type VAEncMiscParameterExtensionDataSeqDisplayMPEG2 =
     _VAEncMiscParameterExtensionDataSeqDisplayMPEG2;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferVP8 {
     pub frame_width: u32,
     pub frame_height: u32,
@@ -20879,7 +22301,7 @@ pub union _VAEncPictureParameterBufferVP8__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferVP8__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -21040,6 +22462,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP8__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP8__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferVP8__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferVP8__bindgen_ty_2 {
@@ -21048,7 +22479,7 @@ pub union _VAEncPictureParameterBufferVP8__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferVP8__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -21472,6 +22903,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP8__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP8__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferVP8__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferVP8"]
@@ -21507,6 +22947,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP8::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP8, va_reserved) - 44usize];
 };
+impl Default for _VAEncPictureParameterBufferVP8 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferVP8 = _VAEncPictureParameterBufferVP8;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -21526,9 +22975,18 @@ const _: () = {
     ["Offset of field: _VAEncMBMapBufferVP8::va_reserved"]
         [::std::mem::offset_of!(_VAEncMBMapBufferVP8, va_reserved) - 16usize];
 };
+impl Default for _VAEncMBMapBufferVP8 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMBMapBufferVP8 = _VAEncMBMapBufferVP8;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAQMatrixBufferVP8 {
     pub quantization_index: [u16; 4usize],
     pub quantization_index_delta: [i16; 5usize],
@@ -21547,7 +23005,7 @@ const _: () = {
 };
 pub type VAQMatrixBufferVP8 = _VAQMatrixBufferVP8;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VACodedBufferVP9Status {
     pub base_qp_index: u16,
     pub loop_filter_level: u8,
@@ -21576,7 +23034,7 @@ const _: () = {
 };
 pub type VACodedBufferVP9Status = _VACodedBufferVP9Status;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferVP9 {
     pub max_frame_width: u32,
     pub max_frame_height: u32,
@@ -21654,7 +23112,7 @@ pub union _VAEncPictureParameterBufferVP9__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferVP9__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -21863,6 +23321,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP9__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP9__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferVP9__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferVP9__bindgen_ty_2 {
@@ -21871,7 +23338,7 @@ pub union _VAEncPictureParameterBufferVP9__bindgen_ty_2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferVP9__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -22197,6 +23664,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP9__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP9__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferVP9__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferVP9"]
@@ -22275,6 +23751,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferVP9::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferVP9, va_reserved) - 100usize];
 };
+impl Default for _VAEncPictureParameterBufferVP9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferVP9 = _VAEncPictureParameterBufferVP9;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22291,7 +23776,7 @@ pub union _VAEncSegParamVP9__bindgen_ty_1 {
     pub value: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSegParamVP9__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -22388,6 +23873,15 @@ const _: () = {
     ["Offset of field: _VAEncSegParamVP9__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSegParamVP9__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSegParamVP9__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSegParamVP9"][::std::mem::size_of::<_VAEncSegParamVP9>() - 20usize];
@@ -22401,6 +23895,15 @@ const _: () = {
     ["Offset of field: _VAEncSegParamVP9::va_reserved"]
         [::std::mem::offset_of!(_VAEncSegParamVP9, va_reserved) - 4usize];
 };
+impl Default for _VAEncSegParamVP9 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSegParamVP9 = _VAEncSegParamVP9;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22419,6 +23922,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterTypeVP9PerSegmantParam::va_reserved"]
         [::std::mem::offset_of!(_VAEncMiscParameterTypeVP9PerSegmantParam, va_reserved) - 160usize];
 };
+impl Default for _VAEncMiscParameterTypeVP9PerSegmantParam {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncMiscParameterTypeVP9PerSegmantParam = _VAEncMiscParameterTypeVP9PerSegmantParam;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22428,7 +23940,7 @@ pub union _VAConfigAttribValEncAV1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncAV1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -22707,6 +24219,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncAV1::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncAV1, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncAV1 = _VAConfigAttribValEncAV1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22716,7 +24237,7 @@ pub union _VAConfigAttribValEncAV1Ext1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncAV1Ext1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -22813,6 +24334,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncAV1Ext1::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncAV1Ext1, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncAV1Ext1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncAV1Ext1 = _VAConfigAttribValEncAV1Ext1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22822,7 +24352,7 @@ pub union _VAConfigAttribValEncAV1Ext2 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAConfigAttribValEncAV1Ext2__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -22935,6 +24465,15 @@ const _: () = {
     ["Offset of field: _VAConfigAttribValEncAV1Ext2::value"]
         [::std::mem::offset_of!(_VAConfigAttribValEncAV1Ext2, value) - 0usize];
 };
+impl Default for _VAConfigAttribValEncAV1Ext2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAConfigAttribValEncAV1Ext2 = _VAConfigAttribValEncAV1Ext2;
 pub const VAEncPackedHeaderAV1_SPS: VAEncPackedHeaderTypeAV1 = 1;
 pub const VAEncPackedHeaderAV1_PPS: VAEncPackedHeaderTypeAV1 = 2;
@@ -22961,7 +24500,7 @@ pub union _VAEncSequenceParameterBufferAV1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSequenceParameterBufferAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -23302,6 +24841,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSequenceParameterBufferAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSequenceParameterBufferAV1"]
@@ -23331,6 +24879,15 @@ const _: () = {
     ["Offset of field: _VAEncSequenceParameterBufferAV1::va_reserved"]
         [::std::mem::offset_of!(_VAEncSequenceParameterBufferAV1, va_reserved) - 24usize];
 };
+impl Default for _VAEncSequenceParameterBufferAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSequenceParameterBufferAV1 = _VAEncSequenceParameterBufferAV1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23348,7 +24905,7 @@ pub union _VAEncSegParamAV1__bindgen_ty_1 {
     pub value: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncSegParamAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -23445,6 +25002,15 @@ const _: () = {
     ["Offset of field: _VAEncSegParamAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncSegParamAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncSegParamAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncSegParamAV1"][::std::mem::size_of::<_VAEncSegParamAV1>() - 156usize];
@@ -23460,6 +25026,15 @@ const _: () = {
     ["Offset of field: _VAEncSegParamAV1::va_reserved"]
         [::std::mem::offset_of!(_VAEncSegParamAV1, va_reserved) - 140usize];
 };
+impl Default for _VAEncSegParamAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSegParamAV1 = _VAEncSegParamAV1;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -23477,6 +25052,15 @@ const _: () = {
     ["Offset of field: _VAEncSegMapBufferAV1::pSegmentMap"]
         [::std::mem::offset_of!(_VAEncSegMapBufferAV1, pSegmentMap) - 8usize];
 };
+impl Default for _VAEncSegMapBufferAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncSegMapBufferAV1 = _VAEncSegMapBufferAV1;
 pub const VAAV1EncTransformationIdentity: VAEncTransformationTypeAV1 = 0;
 pub const VAAV1EncTransformationTranslation: VAEncTransformationTypeAV1 = 1;
@@ -23507,6 +25091,15 @@ const _: () = {
     ["Offset of field: _VAEncWarpedMotionParamsAV1::va_reserved"]
         [::std::mem::offset_of!(_VAEncWarpedMotionParamsAV1, va_reserved) - 40usize];
 };
+impl Default for _VAEncWarpedMotionParamsAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncWarpedMotionParamsAV1 = _VAEncWarpedMotionParamsAV1;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23516,7 +25109,7 @@ pub union VARefFrameCtrlAV1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct VARefFrameCtrlAV1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -23673,6 +25266,15 @@ const _: () = {
     ["Offset of field: VARefFrameCtrlAV1::value"]
         [::std::mem::offset_of!(VARefFrameCtrlAV1, value) - 0usize];
 };
+impl Default for VARefFrameCtrlAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1 {
@@ -23746,7 +25348,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -24038,6 +25640,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_1::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_1, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferAV1__bindgen_ty_2 {
@@ -24045,7 +25656,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_2 {
     pub value: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_2__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -24143,6 +25754,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_2::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_2, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_2 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferAV1__bindgen_ty_3 {
@@ -24151,7 +25771,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_3 {
 }
 #[repr(C)]
 #[repr(align(2))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_3__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -24264,6 +25884,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_3::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_3, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_3 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferAV1__bindgen_ty_4 {
@@ -24271,7 +25900,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_4 {
     pub value: u32,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_4__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -24448,6 +26077,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_4::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_4, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_4 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferAV1__bindgen_ty_5 {
@@ -24456,7 +26094,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_5 {
 }
 #[repr(C)]
 #[repr(align(2))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_5__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -24588,6 +26226,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_5::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_5, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_5 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _VAEncPictureParameterBufferAV1__bindgen_ty_6 {
@@ -24595,7 +26242,7 @@ pub union _VAEncPictureParameterBufferAV1__bindgen_ty_6 {
     pub value: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncPictureParameterBufferAV1__bindgen_ty_6__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -24708,6 +26355,15 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1__bindgen_ty_6::value"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1__bindgen_ty_6, value) - 0usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1__bindgen_ty_6 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncPictureParameterBufferAV1"]
@@ -24863,9 +26519,18 @@ const _: () = {
     ["Offset of field: _VAEncPictureParameterBufferAV1::va_reserved"]
         [::std::mem::offset_of!(_VAEncPictureParameterBufferAV1, va_reserved) - 968usize];
 };
+impl Default for _VAEncPictureParameterBufferAV1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAEncPictureParameterBufferAV1 = _VAEncPictureParameterBufferAV1;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncTileGroupBufferAV1 {
     pub tg_start: u8,
     pub tg_end: u8,
@@ -24931,6 +26596,15 @@ const _: () = {
     ["Offset of field: _VAEncMiscParameterFEIFrameControlH264::reserved3"]
         [::std::mem::offset_of!(_VAEncMiscParameterFEIFrameControlH264, reserved3) - 64usize];
 };
+impl Default for _VAEncMiscParameterFEIFrameControlH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 impl _VAEncMiscParameterFEIFrameControlH264 {
     #[inline]
     pub fn num_mv_predictors_l0(&self) -> u32 {
@@ -25343,7 +27017,7 @@ impl _VAEncMiscParameterFEIFrameControlH264 {
 }
 pub type VAEncMiscParameterFEIFrameControlH264 = _VAEncMiscParameterFEIFrameControlH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMBControlH264 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 4usize]>,
@@ -25541,14 +27215,14 @@ impl _VAEncFEIMBControlH264 {
 }
 pub type VAEncFEIMBControlH264 = _VAEncFEIMBControlH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMVPredictorH264 {
     pub ref_idx: [_VAEncFEIMVPredictorH264__bindgen_ty_1; 4usize],
     pub reserved: u32,
     pub mv: [VAMotionVector; 4usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMVPredictorH264__bindgen_ty_1 {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -25630,7 +27304,7 @@ pub union _VAEncFEIMBCodeH264__bindgen_ty_1 {
     pub inter_mb: _VAEncFEIMBCodeH264__bindgen_ty_1__bindgen_ty_2,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMBCodeH264__bindgen_ty_1__bindgen_ty_1 {
     pub _bitfield_align_1: [u32; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 12usize]>,
@@ -25787,7 +27461,7 @@ impl _VAEncFEIMBCodeH264__bindgen_ty_1__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIMBCodeH264__bindgen_ty_1__bindgen_ty_2 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 12usize]>,
@@ -25994,6 +27668,15 @@ const _: () = {
     ["Offset of field: _VAEncFEIMBCodeH264__bindgen_ty_1::inter_mb"]
         [::std::mem::offset_of!(_VAEncFEIMBCodeH264__bindgen_ty_1, inter_mb) - 0usize];
 };
+impl Default for _VAEncFEIMBCodeH264__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _VAEncFEIMBCodeH264"][::std::mem::size_of::<_VAEncFEIMBCodeH264>() - 64usize];
@@ -26007,6 +27690,15 @@ const _: () = {
     ["Offset of field: _VAEncFEIMBCodeH264::reserved10"]
         [::std::mem::offset_of!(_VAEncFEIMBCodeH264, reserved10) - 60usize];
 };
+impl Default for _VAEncFEIMBCodeH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 impl _VAEncFEIMBCodeH264 {
     #[inline]
     pub fn inter_mb_mode(&self) -> u32 {
@@ -26492,7 +28184,7 @@ impl _VAEncFEIMBCodeH264 {
 }
 pub type VAEncFEIMBCodeH264 = _VAEncFEIMBCodeH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAEncFEIDistortionH264 {
     pub inter_distortion: [u16; 16usize],
     pub _bitfield_align_1: [u16; 0],
@@ -26604,6 +28296,15 @@ const _: () = {
     ["Offset of field: _VAStatsStatisticsParameterH264::reserved4"]
         [::std::mem::offset_of!(_VAStatsStatisticsParameterH264, reserved4) - 88usize];
 };
+impl Default for _VAStatsStatisticsParameterH264 {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 impl _VAStatsStatisticsParameterH264 {
     #[inline]
     pub fn frame_qp(&self) -> u32 {
@@ -26968,7 +28669,7 @@ impl _VAStatsStatisticsParameterH264 {
 }
 pub type VAStatsStatisticsParameterH264 = _VAStatsStatisticsParameterH264;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAStatsStatisticsH264 {
     pub _bitfield_align_1: [u16; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 16usize]>,
@@ -27241,7 +28942,7 @@ pub const VAProcPerformanceMode: _VAProcMode = 2;
 pub type _VAProcMode = ::std::os::raw::c_uint;
 pub use self::_VAProcMode as VAProcMode;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VABlendState {
     pub flags: ::std::os::raw::c_uint,
     pub global_alpha: f32,
@@ -27346,9 +29047,18 @@ const _: () = {
     ["Offset of field: _VAProcPipelineCaps::va_reserved"]
         [::std::mem::offset_of!(_VAProcPipelineCaps, va_reserved) - 120usize];
 };
+impl Default for _VAProcPipelineCaps {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcPipelineCaps = _VAProcPipelineCaps;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcFilterValueRange {
     pub min_value: f32,
     pub max_value: f32,
@@ -27374,7 +29084,7 @@ const _: () = {
 };
 pub type VAProcFilterValueRange = _VAProcFilterValueRange;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcColorProperties {
     pub chroma_sample_location: u8,
     pub color_range: u8,
@@ -27403,7 +29113,7 @@ const _: () = {
 };
 pub type VAProcColorProperties = _VAProcColorProperties;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAHdrMetaDataHDR10 {
     pub display_primaries_x: [u16; 3usize],
     pub display_primaries_y: [u16; 3usize],
@@ -27459,6 +29169,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterCapHighDynamicRange::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterCapHighDynamicRange, va_reserved) - 6usize];
 };
+impl Default for _VAProcFilterCapHighDynamicRange {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterCapHighDynamicRange = _VAProcFilterCapHighDynamicRange;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27481,6 +29200,15 @@ const _: () = {
     ["Offset of field: _VAHdrMetaData::reserved"]
         [::std::mem::offset_of!(_VAHdrMetaData, reserved) - 20usize];
 };
+impl Default for _VAHdrMetaData {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAHdrMetaData = _VAHdrMetaData;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27573,6 +29301,15 @@ const _: () = {
     ["Offset of field: _VAProcPipelineParameterBuffer::va_reserved"]
         [::std::mem::offset_of!(_VAProcPipelineParameterBuffer, va_reserved) - 160usize];
 };
+impl Default for _VAProcPipelineParameterBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcPipelineParameterBuffer = _VAProcPipelineParameterBuffer;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27588,6 +29325,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBufferBase::type_"]
         [::std::mem::offset_of!(_VAProcFilterParameterBufferBase, type_) - 0usize];
 };
+impl Default for _VAProcFilterParameterBufferBase {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferBase = _VAProcFilterParameterBufferBase;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27609,6 +29355,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBuffer::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterParameterBuffer, va_reserved) - 8usize];
 };
+impl Default for _VAProcFilterParameterBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBuffer = _VAProcFilterParameterBuffer;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27633,6 +29388,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBufferDeinterlacing::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterParameterBufferDeinterlacing, va_reserved) - 12usize];
 };
+impl Default for _VAProcFilterParameterBufferDeinterlacing {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferDeinterlacing = _VAProcFilterParameterBufferDeinterlacing;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27657,6 +29421,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBufferColorBalance::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterParameterBufferColorBalance, va_reserved) - 12usize];
 };
+impl Default for _VAProcFilterParameterBufferColorBalance {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferColorBalance = _VAProcFilterParameterBufferColorBalance;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27678,6 +29451,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBufferTotalColorCorrection::value"]
         [::std::mem::offset_of!(_VAProcFilterParameterBufferTotalColorCorrection, value) - 8usize];
 };
+impl Default for _VAProcFilterParameterBufferTotalColorCorrection {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferTotalColorCorrection =
     _VAProcFilterParameterBufferTotalColorCorrection;
 #[repr(C)]
@@ -27708,6 +29490,15 @@ const _: () = {
         va_reserved
     ) - 10usize];
 };
+impl Default for _VAProcFilterParameterBufferHVSNoiseReduction {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferHVSNoiseReduction =
     _VAProcFilterParameterBufferHVSNoiseReduction;
 #[repr(C)]
@@ -27730,6 +29521,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBufferHDRToneMapping::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterParameterBufferHDRToneMapping, va_reserved) - 48usize];
 };
+impl Default for _VAProcFilterParameterBufferHDRToneMapping {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBufferHDRToneMapping = _VAProcFilterParameterBufferHDRToneMapping;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27766,9 +29566,18 @@ const _: () = {
     ["Offset of field: _VAProcFilterParameterBuffer3DLUT::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterParameterBuffer3DLUT, va_reserved) - 24usize];
 };
+impl Default for _VAProcFilterParameterBuffer3DLUT {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterParameterBuffer3DLUT = _VAProcFilterParameterBuffer3DLUT;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcFilterCap3DLUT {
     pub lut_size: u16,
     pub lut_stride: [u16; 3usize],
@@ -27797,7 +29606,7 @@ const _: () = {
 };
 pub type VAProcFilterCap3DLUT = _VAProcFilterCap3DLUT;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct _VAProcFilterCap {
     pub range: VAProcFilterValueRange,
     pub va_reserved: [u32; 4usize],
@@ -27829,6 +29638,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterCapDeinterlacing::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterCapDeinterlacing, va_reserved) - 4usize];
 };
+impl Default for _VAProcFilterCapDeinterlacing {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterCapDeinterlacing = _VAProcFilterCapDeinterlacing;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27850,6 +29668,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterCapColorBalance::va_reserved"]
         [::std::mem::offset_of!(_VAProcFilterCapColorBalance, va_reserved) - 36usize];
 };
+impl Default for _VAProcFilterCapColorBalance {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterCapColorBalance = _VAProcFilterCapColorBalance;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27868,6 +29695,15 @@ const _: () = {
     ["Offset of field: _VAProcFilterCapTotalColorCorrection::range"]
         [::std::mem::offset_of!(_VAProcFilterCapTotalColorCorrection, range) - 4usize];
 };
+impl Default for _VAProcFilterCapTotalColorCorrection {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProcFilterCapTotalColorCorrection = _VAProcFilterCapTotalColorCorrection;
 pub type VAProtectedSessionID = VAGenericID;
 pub const VA_TEE_EXECUTE_FUNCTION_ID_PASS_THROUGH: _VA_TEE_EXEC_FUNCTION_ID = 1;
@@ -27897,6 +29733,15 @@ const _: () = {
     ["Offset of field: _VAProtectedSessionBuffer::va_reserved"]
         [::std::mem::offset_of!(_VAProtectedSessionBuffer, va_reserved) - 16usize];
 };
+impl Default for _VAProtectedSessionBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProtectedSessionBuffer = _VAProtectedSessionBuffer;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -27927,6 +29772,15 @@ const _: () = {
     ["Offset of field: _VAProtectedSessionExecuteBuffer::va_reserved"]
         [::std::mem::offset_of!(_VAProtectedSessionExecuteBuffer, va_reserved) - 88usize];
 };
+impl Default for _VAProtectedSessionExecuteBuffer {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type VAProtectedSessionExecuteBuffer = _VAProtectedSessionExecuteBuffer;
 pub struct va {
     __library: ::libloading::Library,

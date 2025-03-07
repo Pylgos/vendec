@@ -3,44 +3,25 @@ use paste::paste;
 
 pub use vendec_libva_sys as sys;
 
+mod buffer;
 mod config;
+mod context;
 mod display;
 mod error;
+mod image;
 mod library;
 mod surface;
+pub use buffer::*;
 pub use config::*;
+pub use context::*;
 pub use display::*;
 pub use error::*;
+pub use image::*;
 pub use library::*;
 pub use surface::*;
 
-trait GenericValue: Sized {
-    fn from_raw(attr: u32) -> Option<Self>;
-    fn to_raw(self) -> u32;
-}
-
-impl GenericValue for u32 {
-    fn from_raw(attr: u32) -> Option<Self> {
-        Some(attr)
-    }
-
-    fn to_raw(self) -> u32 {
-        self
-    }
-}
-
-impl GenericValue for bool {
-    fn from_raw(attr: u32) -> Option<Self> {
-        Some(attr != 0)
-    }
-
-    fn to_raw(self) -> u32 {
-        self as u32
-    }
-}
-
-macro_rules! va_enum {
-    {$name:ident: $sys_type:ty; $prefix:ident; $($elem_name:ident ,)*} => {
+macro_rules! va_enum_prefix {
+    {$name:ident: $sys_type:ty; $prefix:ident { $($elem_name:ident ,)* } } => {
         #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
         pub enum $name {
             $(
@@ -72,11 +53,47 @@ macro_rules! va_enum {
         }
     }
 }
+pub(crate) use va_enum_prefix;
+
+macro_rules! va_enum_prefix_suffix {
+    {$name:ident: $sys_type:ty; $prefix:ident { $($elem_name:ident ,)* } $suffix:ident } => {
+        #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+        pub enum $name {
+            $(
+                $elem_name,
+            )*
+        }
+
+        ::paste::paste! {
+            impl TryFrom<$sys_type> for $name {
+                type Error = ();
+                fn try_from(value: $sys_type) -> Result<Self, Self::Error> {
+                    match value {
+                        $(
+                            sys::[<$prefix $elem_name $suffix>] => Ok(Self::$elem_name),
+                        )*
+                        _ => Err(()),
+                    }
+                }
+            }
+            impl From<$name> for $sys_type {
+                fn from(value: $name) -> Self {
+                    match value {
+                        $(
+                            $name::$elem_name => sys::[<$prefix $elem_name $suffix>],
+                        )*
+                    }
+                }
+            }
+        }
+    }
+}
+pub(crate) use va_enum_prefix_suffix;
 
 macro_rules! va_bitflags {
-    {$name:ident; $prefix:ident; $($elem_name:ident ;)*} => {
-        paste! {
-            bitflags! {
+    {$name:ident; $prefix:ident { $($elem_name:ident ,)* } } => {
+        ::paste::paste! {
+            ::bitflags::bitflags! {
                     #[repr(transparent)]
                     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
                     pub struct $name: u32 {
@@ -88,7 +105,7 @@ macro_rules! va_bitflags {
             }
         }
 
-        impl GenericValue for $name {
+        impl ConfigAttribValue for $name {
             fn from_raw(raw: u32) -> Option<Self> {
                 Some(Self::from_bits_truncate(raw))
             }
@@ -99,223 +116,207 @@ macro_rules! va_bitflags {
         }
     }
 }
+pub(crate) use va_bitflags;
 
-macro_rules! va_config_attrib {
-    {$name:ident ; $($type_name:ident : $attrib_name:ident : $attrib_type:ty ,)*} => {
-        #[derive(Debug, Clone, Copy, Eq, PartialEq, Default)]
-        pub struct $name {
-            $(
-                $attrib_name: Option<$attrib_type>,
-            )*
+trait ConfigAttribValue: Sized {
+    fn from_raw(attr: u32) -> Option<Self>;
+    fn to_raw(self) -> u32;
+}
+
+impl ConfigAttribValue for u32 {
+    fn from_raw(attr: u32) -> Option<Self> {
+        Some(attr)
+    }
+
+    fn to_raw(self) -> u32 {
+        self
+    }
+}
+
+impl ConfigAttribValue for bool {
+    fn from_raw(attr: u32) -> Option<Self> {
+        Some(attr != 0)
+    }
+
+    fn to_raw(self) -> u32 {
+        self as u32
+    }
+}
+
+va_enum_prefix! {
+    Profile: sys::VAProfile;
+    VAProfile {
+        MPEG2Simple,
+        MPEG2Main,
+        MPEG4Simple,
+        MPEG4AdvancedSimple,
+        MPEG4Main,
+        H264Baseline,
+        H264Main,
+        H264High,
+        VC1Simple,
+        VC1Main,
+        VC1Advanced,
+        H263Baseline,
+        JPEGBaseline,
+        H264ConstrainedBaseline,
+        VP8Version0_3,
+        H264MultiviewHigh,
+        H264StereoHigh,
+        HEVCMain,
+        HEVCMain10,
+        VP9Profile0,
+        VP9Profile1,
+        VP9Profile2,
+        VP9Profile3,
+        HEVCMain12,
+        HEVCMain422_10,
+        HEVCMain422_12,
+        HEVCMain444,
+        HEVCMain444_10,
+        HEVCMain444_12,
+        HEVCSccMain,
+        HEVCSccMain10,
+        HEVCSccMain444,
+        AV1Profile0,
+        AV1Profile1,
+        HEVCSccMain444_10,
+        Protected,
+        H264High10,
+        VVCMain10,
+        VVCMultilayerMain10,
+    }
+}
+
+va_enum_prefix! {
+    Entrypoint: sys::VAEntrypoint;
+    VAEntrypoint {
+        VLD,
+        IZZ,
+        IDCT,
+        MoComp,
+        Deblocking,
+        EncSlice,
+        EncPicture,
+        EncSliceLP,
+        VideoProc,
+        FEI,
+        Stats,
+        ProtectedTEEComm,
+        ProtectedContent,
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum ByteOrder {
+    MsbFirst,
+    LsbFirst,
+}
+
+impl TryFrom<u32> for ByteOrder {
+    type Error = ();
+    fn try_from(value: u32) -> Result<Self, Self::Error> {
+        match value {
+            sys::VA_LSB_FIRST => Ok(Self::LsbFirst),
+            sys::VA_MSB_FIRST => Ok(Self::MsbFirst),
+            _ => Err(()),
         }
+    }
+}
 
-        paste! {
-            impl $name {
-                pub fn default_raw_attrib_list() -> Vec<sys::VAConfigAttrib> {
-                    vec![
-                        $(
-                            sys::VAConfigAttrib {
-                                type_: sys::[<VAConfigAttrib $type_name>],
-                                value: 0,
-                            },
-                        )*
-                    ]
-                }
-
-                pub fn to_raw_attrib_list(&self) -> Vec<sys::VAConfigAttrib> {
-                    let mut result = Vec::new();
-                    $(
-                        if let Some(&attr) = self.$attrib_name.as_ref() {
-                            result.push(sys::VAConfigAttrib {
-                                type_: sys::[<VAConfigAttrib $type_name>],
-                                value: GenericValue::to_raw(attr),
-                            });
-                        }
-                    )*
-                    result
-                }
-
-                pub fn from_raw_attrib_list(attrs: &[sys::VAConfigAttrib]) -> Self {
-                    let mut result = Self::default();
-                    for attr in attrs {
-                        match attr.type_ {
-                            $(
-                                sys::[<VAConfigAttrib $type_name>] => {
-                                    if attr.value != sys::VA_ATTRIB_NOT_SUPPORTED {
-                                        result.$attrib_name = <$attrib_type as GenericValue>::from_raw(attr.value);
-                                    }
-                                }
-                            )*
-                            _ => {}
-                        }
-                    }
-                    result
-                }
-
-
-            }
+impl From<ByteOrder> for u32 {
+    fn from(value: ByteOrder) -> Self {
+        match value {
+            ByteOrder::LsbFirst => sys::VA_LSB_FIRST,
+            ByteOrder::MsbFirst => sys::VA_MSB_FIRST,
         }
-    };
-}
-
-va_enum! {
-    Profile: sys::VAProfile; VAProfile;
-    MPEG2Simple,
-    MPEG2Main,
-    MPEG4Simple,
-    MPEG4AdvancedSimple,
-    MPEG4Main,
-    H264Baseline,
-    H264Main,
-    H264High,
-    VC1Simple,
-    VC1Main,
-    VC1Advanced,
-    H263Baseline,
-    JPEGBaseline,
-    H264ConstrainedBaseline,
-    VP8Version0_3,
-    H264MultiviewHigh,
-    H264StereoHigh,
-    HEVCMain,
-    HEVCMain10,
-    VP9Profile0,
-    VP9Profile1,
-    VP9Profile2,
-    VP9Profile3,
-    HEVCMain12,
-    HEVCMain422_10,
-    HEVCMain422_12,
-    HEVCMain444,
-    HEVCMain444_10,
-    HEVCMain444_12,
-    HEVCSccMain,
-    HEVCSccMain10,
-    HEVCSccMain444,
-    AV1Profile0,
-    AV1Profile1,
-    HEVCSccMain444_10,
-    Protected,
-    H264High10,
-    VVCMain10,
-    VVCMultilayerMain10,
-}
-
-va_enum! {
-    Entrypoint: sys::VAEntrypoint; VAEntrypoint;
-    VLD,
-    IZZ,
-    IDCT,
-    MoComp,
-    Deblocking,
-    EncSlice,
-    EncPicture,
-    EncSliceLP,
-    VideoProc,
-    FEI,
-    Stats,
-    ProtectedTEEComm,
-    ProtectedContent,
+    }
 }
 
 va_bitflags! {
-    RtFormat; VA_RT_FORMAT_;
-    YUV420;
-    YUV422;
-    YUV444;
-    YUV411;
-    YUV400;
+    RtFormat;
+    VA_RT_FORMAT_ {
+        YUV420,
+        YUV422,
+        YUV444,
+        YUV411,
+        YUV400,
 
-    YUV420_10;
-    YUV422_10;
-    YUV444_10;
+        YUV420_10,
+        YUV422_10,
+        YUV444_10,
 
-    YUV420_12;
-    YUV422_12;
-    YUV444_12;
+        YUV420_12,
+        YUV422_12,
+        YUV444_12,
 
-    RGB16;
-    RGB32;
-    RGBP;
-    RGB32_10;
-    PROTECTED;
-    RGB32_10BPP;
-    YUV420_10BPP;
+        RGB16,
+        RGB32,
+        RGBP,
+        RGB32_10,
+        PROTECTED,
+        RGB32_10BPP,
+        YUV420_10BPP,
+    }
 }
 
-va_bitflags! {
-    DecSliceMode; VA_DEC_SLICE_MODE_;
-    NORMAL;
-    BASE;
+#[derive(Clone, Copy, PartialEq, Eq, Hash)]
+pub struct Fourcc(u32);
+
+impl TryFrom<&str> for Fourcc {
+    type Error = ();
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        if value.len() != 4 {
+            return Err(());
+        }
+        let bytes = value.as_bytes();
+        Ok(Self(
+            (bytes[0] as u32)
+                | ((bytes[1] as u32) << 8)
+                | ((bytes[2] as u32) << 16)
+                | ((bytes[3] as u32) << 24),
+        ))
+    }
 }
 
-va_bitflags! {
-    EncPackedHeaders; VA_ENC_PACKED_HEADER_;
-    SEQUENCE;
-    PICTURE;
-    SLICE;
-    MISC;
-    RAW_DATA;
+impl From<u32> for Fourcc {
+    fn from(value: u32) -> Self {
+        Self(value)
+    }
 }
 
-va_bitflags! {
-    EncInterlaced; VA_ENC_INTERLACED_;
-    FRAME;
-    FIELD;
-    MBAFF;
-    PAFF;
+impl From<Fourcc> for u32 {
+    fn from(value: Fourcc) -> Self {
+        value.0
+    }
 }
 
-va_bitflags! {
-    EncSliceStructure; VA_ENC_SLICE_STRUCTURE_;
-    POWER_OF_TWO_ROWS;
-    ARBITRARY_MACROBLOCKS;
-    EQUAL_ROWS;
-    MAX_SLICE_SIZE;
-    ARBITRARY_ROWS;
-    EQUAL_MULTI_ROWS;
+impl std::fmt::Debug for Fourcc {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let bytes = [
+            self.0 as u8,
+            (self.0 >> 8) as u8,
+            (self.0 >> 16) as u8,
+            (self.0 >> 24) as u8,
+        ];
+        String::from_utf8_lossy(&bytes).fmt(f)
+    }
 }
 
-va_bitflags! {
-    EncQuantization; VA_ENC_QUANTIZATION_;
-    TRELLIS_SUPPORTED;
-}
-
-va_bitflags! {
-    EncIntraRefresh; VA_ENC_INTRA_REFRESH_;
-    ROLLING_COLUMN;
-    ROLLING_ROW;
-    ADAPTIVE;
-    CYCLIC;
-    P_FRAME;
-    B_FRAME;
-    MULTI_REF;
-}
-
-// https://intel.github.io/libva/group__api__core.html#ga2c3be94ce142fb92a4bf93e9b1b4fa01
-va_config_attrib! {
-    ConfigAttributes;
-    RTFormat: rt_format: RtFormat,
-    DecSliceMode: dec_slice_mode: DecSliceMode,
-    DecProcessing: dec_processing: bool,
-    EncPackedHeaders: enc_packed_headers: EncPackedHeaders,
-    EncInterlaced: enc_interlaced: EncInterlaced,
-    EncMaxRefFrames: enc_max_ref_frames: u32,
-    EncMaxSlices: enc_max_slices: u32,
-    EncSliceStructure: enc_slice_structure: EncSliceStructure,
-    EncMacroblockInfo: enc_macroblock_info: u32,
-    MaxPictureWidth: max_picture_width: u32,
-    MaxPictureHeight: max_picture_height: u32,
-    EncQualityRange: enc_quality_range: u32,
-    EncQuantization: enc_quantization: EncQuantization,
-    EncIntraRefresh: enc_intra_refresh: EncIntraRefresh,
-    EncSkipFrame: enc_skip_frame: bool,
+impl std::fmt::Display for Fourcc {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let bytes = [
+            self.0 as u8,
+            (self.0 >> 8) as u8,
+            (self.0 >> 16) as u8,
+            (self.0 >> 24) as u8,
+        ];
+        String::from_utf8_lossy(&bytes).fmt(f)
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::fs;
-
     use super::*;
 
     #[test]
@@ -330,5 +331,18 @@ mod tests {
         println!("{:?}", config_attrs);
         let config =
             Config::new(display.clone(), None, Entrypoint::VideoProc, &config_attrs).unwrap();
+        let surface_attrs = config.query_surface_attributes().unwrap();
+        println!("{:?}", surface_attrs);
+        let surface = Surface::new(
+            display.clone(),
+            RtFormat::YUV420,
+            1920,
+            1080,
+            None,
+            UsageHint::GENERIC,
+        )
+        .unwrap();
+        let image = surface.derive_image();
+        println!("{:?}", image);
     }
 }
